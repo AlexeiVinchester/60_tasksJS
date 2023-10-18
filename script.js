@@ -45,7 +45,7 @@ function moveZeros(arr){
         return filteredArr;
     */
 }
-alert(moveZeros([false,1,0,1,0,0,0,2,0,0,5,6,9,true,1,3,"a"]));
+//alert(moveZeros([false,1,0,1,0,0,0,2,0,0,5,6,9,true,1,3,"a"]));
 /*
 №3
 
@@ -107,3 +107,21 @@ function findAnagramms(word, arr){
 }
 
 //alert(findAnagramms('abba', ['aabb', 'abcd', 'bbaa', 'dada']));
+
+/*
+№6
+
+Даны две строки, которые содержат только буквы от a - z.
+Ваша задача написать функцию, которая возвращает
+новую отсортированную (по порядку) строку,
+которая содержит буквы двух строк, повторяющихся только один раз.
+
+Например:
+longest("xyaabbbccccdefww", "xxxxyyyyabklmopq") --> "abcdefklmopqxy"
+*/
+
+function longest(str1, str2){
+    let set = new Set(Array.from(str1).concat(Array.from(str2)));
+    return Array.from(set).sort().join('');
+}
+alert(longest("xyaabbbccccdefww", "xxxxyyyyabklmopq"));
