@@ -1,6 +1,29 @@
 "use strict"
 
 /*
+№1
+Напишите функцию, которая принимает массив и переносит все 0 в конец,
+не изменяя порядок остальных элементов массива.
+
+Например:
+moveZeros([false,1,0,1,2,0,1,3,"a"]) --> [false,1,1,2,1,3,"a",0,0]
+*/ 
+
+function moveZeros(arr){
+    let filteredArr = arr.filter(index => index !== 0);
+    let zeroAmount = arr.length - filteredArr.length;
+    return filteredArr.concat(new Array(zeroAmount).fill(0));
+    /*
+        или вот так
+
+        for(let i = 0; i < zeroAmount; ++i){
+            filteredArr.push(0);
+        }
+        return filteredArr;
+    */
+}
+alert(moveZeros([false,1,0,1,0,0,0,2,0,0,5,6,9,true,1,3,"a"]));
+/*
 №3
 
 Вы, наверное, знаете систему «лайков» по Facebook и другим страницам. 
