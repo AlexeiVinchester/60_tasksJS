@@ -9,6 +9,29 @@
 moveZeros([false,1,0,1,2,0,1,3,"a"]) --> [false,1,1,2,1,3,"a",0,0]
 */ 
 
+/*
+    Первое решение - изменяет сам входной массив
+*/
+
+function moveZerosArr(arr){
+    let count = 0;
+    for(let i = 0; i < arr.length; ++i){
+        if(arr[i] === 0){
+           arr.splice(i, 1);
+           count++;
+           i--; // нужно на случай нескольких нулей подряд
+        }
+    }
+    for(let i = 0; i < count; ++i){
+        arr.push(0);
+    }
+    return arr;
+}
+
+
+/*
+    Второе решение - подменяет входной массив
+*/
 function moveZeros(arr){
     let filteredArr = arr.filter(index => index !== 0);
     let zeroAmount = arr.length - filteredArr.length;
