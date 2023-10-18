@@ -124,4 +124,22 @@ function longest(str1, str2){
     let set = new Set(Array.from(str1).concat(Array.from(str2)));
     return Array.from(set).sort().join('');
 }
-alert(longest("xyaabbbccccdefww", "xxxxyyyyabklmopq"));
+//alert(longest("xyaabbbccccdefww", "xxxxyyyyabklmopq"));
+
+/*
+Ваша задача написать функцию, которая принимает 
+в качестве параметра целое число и возводит в квадрат каждую цифру числа. 
+Результат также необходимо вернуть в виде целого числа.
+
+Например:
+squareDigits(9119) --> 811181    
+*/
+
+function squareDigits(num){
+    let result = '';
+    for(let i of String(num)){
+        result += +i * +i;
+    }
+    return result;
+}
+alert(squareDigits(578009));
