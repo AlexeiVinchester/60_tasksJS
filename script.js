@@ -144,6 +144,37 @@ function squareDigits(num){
 }
 //alert(squareDigits(578009));
 
+
+/*
+№13
+Напишите функцию с двумя параметрами, которая создаёт массив элементов, 
+представляющих собой сумму соответствующих элементов заданных массивов.
+
+Например:
+const array1 = [1, 2, 3, 4, 5];
+const array2 = [4, 5, 6];
+
+func(array1,array2) // [5,7,9,4,5]
+*/
+
+function sumSameArrElements(arr1, arr2){
+    function worker(maxArr, minArr){
+        let result = [];
+        for(let i = 0; i < minArr.length; ++i){
+            result[i] = maxArr[i] + minArr[i];
+        }
+        return result.concat(maxArr.splice(minArr.length, (maxArr.length - minArr.length)));
+    }
+    if(arr1.length > arr2.length){
+       return worker(arr1, arr2);
+    } else{
+        return worker(arr2, arr1);
+    }
+    
+}
+
+//alert(sumSameArrElements( [1, 2, 3, 4, 5], [4, 5, 6] ))
+
 /*
 №14
 Напишите функцию `removeDuplicates(arr)`, которая возвращает массив,
