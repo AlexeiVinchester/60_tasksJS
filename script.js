@@ -211,3 +211,16 @@ function removeDuplicates(arr){
     return Array.from(new Set(arr));
 }
 //alert(removeDuplicates(["php", "php", "css", "css","script", "script", "html", "html", "java"]));
+
+/*
+№16
+
+Напишите функцию `copyArr(arr)`, которая копирует массив, не изменяя оригинал.
+
+Например:
+const vegetables = ['Капуста', 'Репа', 'Редиска'];
+*/
+
+function copyArr(arr){
+    return arr.slice();
+}
