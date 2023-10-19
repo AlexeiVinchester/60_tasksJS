@@ -302,4 +302,21 @@ alphabetize("redev") --> "deerv"
 function alphabetize(str){
     return str.split('').sort().join('');
 }
-//alert(alphabetize("redev"))
+//alert(alphabetize("redev"));
+
+/*
+№22
+
+Напишите функцию `uniqueLetters(str)`, которая возвращает строку,
+оставив в ней только уникальные символы, т.е. встречающиеся в строке один раз.
+
+Например:
+uniqueLetters('anaconda'); --> 'ancod'
+uniqueLetters('redev'); --> 'redv'
+*/
+
+function uniqueLetters(str){
+    return Array.from(new Set(str)).join('');
+}
+
+alert(uniqueLetters('redev'));
