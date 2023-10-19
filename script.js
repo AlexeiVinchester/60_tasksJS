@@ -163,7 +163,8 @@ function maskify(str){
     let secondPart = str.slice(-4);
     return firsrPart + secondPart;
 }
-alert(maskify("4556364607935616"));
+//alert(maskify("4556364607935616"));
+
 /*
 №13
 Напишите функцию с двумя параметрами, которая создаёт массив элементов, 
@@ -224,3 +225,31 @@ const vegetables = ['Капуста', 'Репа', 'Редиска'];
 function copyArr(arr){
     return arr.slice();
 }
+
+/*
+№17
+
+Создайте метод объекта `String endsWith()`, который сравнивает 
+подстроку str1 с окончанием исходной строки str и определяет, 
+заканчивается ли строка символами подстроки.
+
+Например:
+const str = "Каждый охотник желает знать"; 
+const str1 = "скрипт";
+const str2 = "знать";
+
+String.prototype.endsWith = function(substring) {};
+
+str.endsWith(str1)) -->  false
+str.endsWith(str2)) -->  true
+*/
+
+String.prototype.endsWith = function(str){
+    if(this.slice(-str.length) == str) return true;
+    else return false;
+}
+//const str = "Каждый охотник желает знать"; 
+//const str1 = " желает знать";
+//const str2 = "знать";
+//alert(str.endsWith(str1));
+//alert(str.endsWith(str2));
