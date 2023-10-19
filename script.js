@@ -288,3 +288,18 @@ function cutString(str, n){
 
 //const str = "Сила тяжести приложена к центру масс тела";
 //alert(cutString(str, 5));
+
+/*
+№21
+
+Напишите функцию `alphabetize(str)`, которая возвращает строку,
+отсортировав её символы в алфавитном порядке.
+
+Например:
+alphabetize("redev") --> "deerv"
+*/
+
+function alphabetize(str){
+    return str.split('').sort().join('');
+}
+//alert(alphabetize("redev"))
