@@ -268,5 +268,23 @@ comparison('string', 'Redev') -->  false
 function comparison(str1, str2){
     return str1.toLowerCase() == str2.toLowerCase();
 }
-alert(comparison('STRING', 'StRiNg'));
-alert(comparison('redddev', 'Redev'));
+//alert(comparison('STRING', 'StRiNg'));
+//alert(comparison('redddev', 'Redev'));
+
+/*
+№20
+
+Напишите функцию `cutString(str, n)`, которая удаляет лишние 
+слова из строки str, оставив в ней n слов.
+
+Например:
+const str = "Сила тяжести приложена к центру масс тела";`
+cutString(str, 5) --> "Сила тяжести приложена к центру"
+*/
+
+function cutString(str, n){
+    return str.split(' ').slice(0, n).join(' ');
+}
+
+//const str = "Сила тяжести приложена к центру масс тела";
+//alert(cutString(str, 5));
