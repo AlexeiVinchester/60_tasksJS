@@ -253,3 +253,20 @@ String.prototype.endsWith = function(str){
 //const str2 = "знать";
 //alert(str.endsWith(str1));
 //alert(str.endsWith(str2));
+
+/*
+№18
+
+Напишите функцию `comparison(str1, str2)`, которая сравнивает
+строки без учёта регистра символов.
+
+Например:
+comparison('string', 'StRiNg') -->  true
+comparison('string', 'Redev') -->  false
+*/
+
+function comparison(str1, str2){
+    return str1.toLowerCase() == str2.toLowerCase();
+}
+alert(comparison('STRING', 'StRiNg'));
+alert(comparison('redddev', 'Redev'));
