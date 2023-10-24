@@ -267,6 +267,30 @@ function removeDuplicates(arr){
 //alert(removeDuplicates(["php", "php", "css", "css","script", "script", "html", "html", "java"]));
 
 /*
+№15
+Напишите функцию colonOdd(num), которая принимает число num в 
+качестве аргумента и вставляет двоеточие (:) между двумя нечетными числами. 
+Например, если вводится число 55639217, то на выходе должно быть 5:563:921:7
+*/
+function colonOdd(num){
+    let str = String(num);
+    let resultArr = [str[0]];
+    for(let i = 1; i < str.length; ++i){
+        function checkOdd(num){
+            return (num % 2) == 1 ? true : false;
+        }
+        if(checkOdd(str[i-1]) && (checkOdd([str[i]]))){
+            resultArr.push(':', str[i]);
+        } else{
+            resultArr.push(str[i]);
+        }
+    }
+    return resultArr.join('');
+}
+
+alert(colonOdd(3355998999999))
+
+/*
 №16
 
 Напишите функцию `copyArr(arr)`, которая копирует массив, не изменяя оригинал.
