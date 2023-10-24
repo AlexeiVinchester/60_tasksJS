@@ -413,3 +413,23 @@ function uniqueLetters(str){
 }
 
 //alert(uniqueLetters('redev'));
+
+/*
+№23
+
+Напишите функцию `removeDuplicate(str)`, которая возвращает строку,
+очищенную от слов-дупликатов, т.е. 
+каждое слово должно повторяться не более одного раза.
+
+const str = "вишня, груша, слива, груша";
+
+Например:
+removeDuplicate(str) --> "вишня, груша, слива"
+*/
+
+function removeDuplicate(str){
+    let setOfWords = new Set(str.split(', '));
+    return Array.from(setOfWords).join(', ');
+}
+
+//alert(removeDuplicate("вишня, груша, слива, груша, груша, вишня, вишня, орех, орех"))
