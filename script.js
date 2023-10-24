@@ -166,6 +166,27 @@ function maskify(str){
 //alert(maskify("4556364607935616"));
 
 /*
+№9
+Дан массив слов, необходимо определить, 
+составлены ли все слова из одних и тех же символов.
+ 
+Например:
+["кот", "ток", "кто"] --> true
+["кот", "тк", "кТо"] --> false
+*/
+
+function checkArrElemOnUniqueLetters(arr){
+    let sortedElemArr = arr.map(item => item
+                                        .toLowerCase()
+                                        .split('')
+                                        .sort()
+                                        .join(''));
+    return (new Set(sortedElemArr).size == 1) ? true : false;
+}
+
+//alert(checkArrElemOnUniqueLetters(["кот", "ток", "кто"]));
+
+/*
 №13
 Напишите функцию с двумя параметрами, которая создаёт массив элементов, 
 представляющих собой сумму соответствующих элементов заданных массивов.
@@ -319,4 +340,4 @@ function uniqueLetters(str){
     return Array.from(new Set(str)).join('');
 }
 
-alert(uniqueLetters('redev'));
+//alert(uniqueLetters('redev'));
