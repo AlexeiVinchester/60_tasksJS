@@ -288,7 +288,7 @@ function colonOdd(num){
     return resultArr.join('');
 }
 
-alert(colonOdd(3355998999999))
+//alert(colonOdd(3355998999999))
 
 /*
 №16
@@ -348,6 +348,22 @@ function comparison(str1, str2){
 //alert(comparison('STRING', 'StRiNg'));
 //alert(comparison('redddev', 'Redev'));
 
+/*
+№19
+Напишите функцию `strip(str)`, которая удаляет все лишние пробелы из строки str.
+
+Например:
+const str = "    Pasha is a good      boy     ";
+strip(str) --> "Pasha is a good boy"
+*/
+
+function strip(str){
+    return str.replace(/\s+/g, ' ')
+              .replace(/^\s/, '')
+              .replace(/\s$/, '');
+}
+
+//alert(strip('    Max is a good      boy     '))
 /*
 №20
 
