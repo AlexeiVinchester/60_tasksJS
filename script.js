@@ -556,3 +556,28 @@ function solution_1(str){
 alert(solution("redevCoursesRTffRRR"))
 alert(solution("redevCoursesRTffRRR") == solution_1("redevCoursesRTffRRR"));
 */
+
+/*
+№37
+
+Напишите функцию, которая принимает число n (n> 0) и 
+возвращает строку с обратной последовательностью от n до 1.
+
+
+Например: если n = 5 на выходе у Вас должно быть "5 4 3 2 1"
+*/
+
+function strQueryFromNumbers(num){
+    let resultStr = '';
+    if(num < 0){
+        num = prompt('Enter correct num > 0!', '1');
+    } 
+    for(let i = num; i >= 1; --i){
+        if(i == 1) resultStr += i;
+        else resultStr += i + ' ';
+    }
+    return resultStr;
+    
+}
+
+//alert(strQueryFromNumbers(5).length)
