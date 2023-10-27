@@ -244,8 +244,8 @@ function oftenElemOfArr(arr){
         }
     }
 }
-let array = [7, 'z', 'z', 'z', 3, 7, 'z', 7, 'z', 3, 5, 7];
-alert(oftenElemOfArr(array));
+/*let array = [7, 'z', 'z', 'z', 3, 7, 'z', 7, 'z', 3, 5, 7];
+alert(oftenElemOfArr(array));*/
 
 
 /*
@@ -463,3 +463,21 @@ function removeDuplicate(str){
 }
 
 //alert(removeDuplicate("вишня, груша, слива, груша, груша, вишня, вишня, орех, орех"))
+
+/*
+№25
+
+Напишите функцию `startsWith()`, которая определяет, начинается ли строка 
+символами другой строки, возвращая, соотвественно, true или false.
+
+let str = 'abc def ghi jkl mno pqr stu';
+
+Например:
+str.startsWith('abc') --> 
+*/
+String.prototype.startsWith = function(substr){
+    return this.slice(0, substr.length) == substr ? true : false;
+}
+
+/*let str = 'abc def ghi jkl mno pqr stu';
+alert(str.startsWith('abc def hi '));*/
