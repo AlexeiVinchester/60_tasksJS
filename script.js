@@ -219,6 +219,36 @@ function checkArrElemOnUniqueLetters(arr){
 //alert(checkArrElemOnUniqueLetters(["кот", "ток", "кто"]));
 
 /*
+№11
+
+Напишите функцию, которая находит наиболее часто используемый элемент массива.
+
+Например:
+const array=[7, 'z', 'z', 'z', 3, 7, 'z', 7, 'z', 3, 5, 7]; --> "z"
+*/
+
+function oftenElemOfArr(arr){
+    let countOfElem = new Map();
+    for(let elem of arr){
+        if(countOfElem.has(elem)){
+            countOfElem.set(elem, 1 + countOfElem.get(elem));
+        } else{
+            countOfElem.set(elem, 1)
+        }    
+    }
+    let arrOfKeys = Array.from(countOfElem.values());
+    let mostOftenCount = Math.max.apply(null, arrOfKeys);
+    for(let key of countOfElem.keys()){
+        if(countOfElem.get(key) == mostOftenCount){
+            return key;
+        }
+    }
+}
+let array = [7, 'z', 'z', 'z', 3, 7, 'z', 7, 'z', 3, 5, 7];
+alert(oftenElemOfArr(array));
+
+
+/*
 №13
 Напишите функцию с двумя параметрами, которая создаёт массив элементов, 
 представляющих собой сумму соответствующих элементов заданных массивов.
