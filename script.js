@@ -663,8 +663,25 @@ function sortStrByNumber(str){
     }
     return resultArrOfWords.join(' ');
 }
-alert(sortStrByNumber("2is Thi1s T4est 3a"))
-;
+//alert(sortStrByNumber("2is Thi1s T4est 3a"));
+
+/*
+№36
+
+Напишите функцию, которая возвращает сумму двух наименьших положительных чисел,
+учитывая массив из минимум 4 положительных чисел.
+
+Например:
+[12,423,54,1235,3,15,2,52] --> 5
+*/
+
+function sumOfTwoMinNumbers(arr){
+    let sortedArr = arr.sort((a,b) => a-b);
+    return sortedArr[0] + sortedArr[1];
+}
+
+//alert(sumOfTwoMinNumbers([12,423,54,1235,3,15,2,52]))
+
 /*
 №37
 
