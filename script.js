@@ -481,3 +481,17 @@ String.prototype.startsWith = function(substr){
 
 /*let str = 'abc def ghi jkl mno pqr stu';
 alert(str.startsWith('abc def hi '));*/
+
+
+/*
+№26
+
+Напишите функцию capitalizeFirstLetter(str), 
+которая преобразовывает первый символ строки в верхний регистр.
+*/
+
+function capitalizeFirstLetter(str){
+    return str.split('')[0].toUpperCase() + str.slice(1);
+}
+
+//alert(capitalizeFirstLetter('kjshffksjd'))
