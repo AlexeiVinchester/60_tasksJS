@@ -514,6 +514,46 @@ function isUpperCase(str, character){
 
 //alert(isUpperCase('tasks JavaScript', 10));
 
+
+/*
+№29
+
+Представьте, что Вы и Ваши друзья решили создать команду мечты.
+У этой команды должно быть крутое секретное имя,
+которое содержит зашифрованную информацию о ней.
+Например, это могут быть первые буквы имен его членов в верхнем регистре,
+отсортированные по алфавиту. 
+Ваша задача - написать функцию createDreamTeam (members), 
+которая возвращает имя созданной команды (строку) 
+на основе имен ее участников (Array). 
+Удачи!
+
+Имена участников должны быть строками. 
+Значения другого типа следует игнорировать. 
+В случае неправильного типа членов функция должна возвращать false.
+
+Например:
+createDreamTeam(['Matt', 'Ann', 'Dmitry', 'Max']) --> 'ADMM'
+createDreamTeam(['Olivia', 1111, 'Lily', 'Oscar', true, null]) --> 'LOO'
+
+*/
+
+function createDreamTeam(arr){
+    let arrOfCorrectNames = [];
+    for(let item of arr){
+        if(typeof item == 'string'){
+            arrOfCorrectNames.push(item);
+        }
+    }
+    if(arrOfCorrectNames.length === 0) return false;
+    let dreamTeamName = [];
+    for(let item of arrOfCorrectNames){
+        dreamTeamName.push(item[0].toUpperCase());
+    }
+    return dreamTeamName.sort().join('');
+}
+
+alert(createDreamTeam([1, 1111, true, true, null]));
 /*
 №30
 
