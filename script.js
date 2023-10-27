@@ -465,6 +465,25 @@ function removeDuplicate(str){
 //alert(removeDuplicate("вишня, груша, слива, груша, груша, вишня, вишня, орех, орех"))
 
 /*
+№24
+
+Напишите функцию `replaceAll(find, replace, str)`, 
+которая заменяет в строке str все вхождение подстроки find на подстроку replace.
+
+let str = 'abc def def lom abc abc def';
+
+Например:
+replaceAll('abc', 'x', str) --> 'x def def lom x x def'
+*/
+
+function replaceAll(find, replace, str){
+    return str.replaceAll(find, replace);
+}
+//let str = 'abc def def lom abc abc def';
+//alert(replaceAll('abc', 'x', str));
+
+
+/*
 №25
 
 Напишите функцию `startsWith()`, которая определяет, начинается ли строка 
