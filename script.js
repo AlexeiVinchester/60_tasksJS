@@ -513,3 +513,15 @@ function isUpperCase(str, character){
 }
 
 //alert(isUpperCase('tasks JavaScript', 10));
+
+/*
+№30
+
+Напишите функцию, которая находит факториал 5.
+*/
+
+function factorial(n){
+    return n <= 1 ? 1 : n * factorial(n-1);
+}
+
+//alert(factorial(8))
