@@ -617,6 +617,25 @@ alert(solution("redevCoursesRTffRRR") == solution_1("redevCoursesRTffRRR"));
 */
 
 /*
+№34
+
+Напишите функцию, которая принимает строковый параметр и 
+меняет буквы в словах в обратном порядке. 
+Все пробелы в строке должны быть сохранены.
+
+Например:
+"This is an example!" -> "sihT si na !elpmaxe"
+*/
+
+function changeFirstAndLastLettersInWord(str){
+    let arrOfWords = str.split(' ');
+    let resultArrOfWords = arrOfWords.map(item =>
+        item.split('').reverse().join(''));
+    return resultArrOfWords.join(' ');
+}
+
+alert(changeFirstAndLastLettersInWord("This is an example!"))
+/*
 №37
 
 Напишите функцию, которая принимает число n (n> 0) и 
