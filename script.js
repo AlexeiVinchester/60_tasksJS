@@ -525,3 +525,34 @@ function factorial(n){
 }
 
 //alert(factorial(8))
+
+/*
+№33
+
+Напишите функцию, которая переделывает строку из camelCase в snake_case.
+
+Например:
+solution("redevCourses") -> "redev_courses"
+*/
+
+function solution(str){
+    let snake_case = ''
+    for(let i = 0; i < str.length; ++i){
+        if(str[i] == str[i].toUpperCase()){
+            snake_case = str.slice(0, i) + 
+                         '_' + 
+                         str[i].toLowerCase() + 
+                         str.slice(i+1);
+            str = snake_case;
+        }
+    }
+    return snake_case
+}
+
+function solution_1(str){
+    return str.replace(/([A-Z])/g, item => `_${item.toLowerCase()}`);
+}
+/*
+alert(solution("redevCoursesRTffRRR"))
+alert(solution("redevCoursesRTffRRR") == solution_1("redevCoursesRTffRRR"));
+*/
