@@ -745,3 +745,29 @@ function invert(arr){
     return arr.map(item => -item)
 }
 //alert(invert([1,-2,4,-5]))
+
+/*
+№40
+
+Вы можете найти иголку в стоге сена?
+Напишите функцию findNeedle, которая принимает массив, полный мусора, 
+но содержащий одну иголку.
+
+После того, как ваша функция найдет иголку, 
+она должна вернуть сообщение (в виде строки), которое говорит:
+
+"Нашел иголку на позиции" плюс индекс, по которому была найдена иголку
+
+findNeedle(["bla","wekmvever","needle","bntyn"]) --> "Нашел иголку на позиции 2"
+
+*/
+
+function findNeedle(arr){
+    for(let item of arr){
+        if(item === 'needle'){
+            return `Нашел иголку на позиции ${arr.indexOf(item)}`;
+        }
+    }
+}
+
+//alert(findNeedle(["bla","needle","wekmvever","bntyn"]))
