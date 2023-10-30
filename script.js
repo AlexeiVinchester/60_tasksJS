@@ -708,6 +708,26 @@ function strQueryFromNumbers(num){
 //alert(strQueryFromNumbers(5).length)
 
 /*
+№38
+
+В данной задаче Вам нужно удалить из одного массива все элементы второго массива.
+
+Например:
+arrayDiff([1,2],[1]) --> [2]
+arrayDiff([1,2,2,2,3,4],[2,3]) --> [1,4]
+*/
+
+function arrayDiff(arr1, arr2){
+    let result = [];
+    for(let item of arr1){
+        if(!arr2.includes(item)){
+            result.push(item)
+        }
+    }
+    return result;
+}
+//alert(arrayDiff([1,2,2,2,3,4],[2,3]))
+/*
 №39
 
 По заданному набору массива чисел вернуть аддитивную инверсию каждого элемента.
@@ -720,8 +740,8 @@ function strQueryFromNumbers(num){
 
 Вы можете предположить, что все значения являются целыми числами.
 Не изменяйте входной массив
-
+*/
 function invert(arr){
     return arr.map(item => -item)
 }
-alert(invert([1,-2,4,-5]))
+//alert(invert([1,-2,4,-5]))
