@@ -773,6 +773,28 @@ function findNeedle(arr){
 //alert(findNeedle(["bla","needle","wekmvever","bntyn"]))
 
 /*
+№41
+
+Функция simple, в качестве параметра принимающая строку слов,
+возвращает длину самого короткого слова
+
+Например:
+simple("") --> 3
+*/
+
+function simple(str){
+    let clearStr = str.replace(/[^a-zа-яё\s]/gi, '').replace('  ', ' ');
+    alert(clearStr);
+    let setOfLength = new Set();
+    for(let item of clearStr.split(' ')){
+        setOfLength.add(item.length);
+    }
+    return Math.min.apply(null, Array.from(setOfLength));
+    //return Math.min(...Array.from(setOfLength)) 
+}
+//alert(simple("Функция simple качестве параметра принимающая строку слов, возвращает длину самого короткого слова"))
+
+/*
 №42
 
 Напишите функцию, которая возвращает минимальное и
