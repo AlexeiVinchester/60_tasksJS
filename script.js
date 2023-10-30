@@ -771,3 +771,20 @@ function findNeedle(arr){
 }
 
 //alert(findNeedle(["bla","needle","wekmvever","bntyn"]))
+
+/*
+№42
+
+Напишите функцию, которая возвращает минимальное и
+максимальное значение заданного массива.
+
+Например:
+[1, 5, 8, 10, 35, 100] --> [1, 100]
+[-5, -7, -2, 5] --> [- 7, 5]
+*/
+
+function MinAndMaxNumOfArr(arr){
+    let sortedArr = arr.sort((a,b) => a-b);
+    return [sortedArr[0], sortedArr.at(-1)];
+}
+//alert(MinAndMaxNumOfArr([-5, -7, -2, 5]))
