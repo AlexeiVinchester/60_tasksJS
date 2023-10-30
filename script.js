@@ -810,3 +810,25 @@ function MinAndMaxNumOfArr(arr){
     return [sortedArr[0], sortedArr.at(-1)];
 }
 //alert(MinAndMaxNumOfArr([-5, -7, -2, 5]))
+
+/*
+№44
+
+Банкоматы допускают 4 или 6-значные ПИН-коды, 
+а ПИН-коды не могут содержать ничего, кроме 4 цифр или 6 цифр.
+
+Если функции передана правильная строка PIN,
+верните `true`, иначе верните `false`.
+
+Например:
+correctPin('5567') --> true
+correctPin('5432567') --> false
+*/
+
+function correctPin(str){
+    let correctPin = /^[0-9]+$/.test(str);
+    if(correctPin){
+        return (str.length == 4 || str.length == 6) ? true : false;
+    } else return false;
+}
+//alert(correctPin('5588867'))
