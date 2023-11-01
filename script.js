@@ -586,6 +586,20 @@ function factorial(n){
 //alert(factorial(8))
 
 /*
+№32
+
+Напишите функцию, которая проверит, является ли строка палиндромом. 
+(Для того, чтобы решить эту задачу, надо загуглить)
+
+*/
+
+function checkPolindrom(str){
+    let clearStr = str.toLowerCase().replace(/[^a-zа-я]+/g, '');
+    return (clearStr === clearStr.split('').reverse().join('')) ? true : false;
+}
+
+alert(checkPolindrom('Сел в озере березов лес'))
+/*
 №33
 
 Напишите функцию, которая переделывает строку из camelCase в snake_case.
@@ -841,7 +855,7 @@ function toJadenCase(str){
     }
     return correctStr[0].toUpperCase() + correctStr.slice(1);
 }
-alert(toJadenCase('но они не написаны с большой - буквы так, как он их первоначально напечатал'))
+//alert(toJadenCase('но они не написаны с большой - буквы так, как он их первоначально напечатал'))
 
 /*
 №44
