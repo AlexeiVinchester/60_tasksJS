@@ -598,7 +598,7 @@ function checkPolindrom(str){
     return (clearStr === clearStr.split('').reverse().join('')) ? true : false;
 }
 
-alert(checkPolindrom('Сел в озере березов лес'))
+//alert(checkPolindrom('Сел в озере березов лес'))
 /*
 №33
 
@@ -878,3 +878,19 @@ function correctPin(str){
     } else return false;
 }
 //alert(correctPin('5588867'))
+
+/*
+№46
+
+В этом небольшом задании вам дана строка чисел, 
+разделенных пробелами, и Вы должны вернуть самое большое и самое маленькое число.
+
+Например:
+list("4 5 29 54 4 0 -123 666 -64 1 -3 6 -6")  --> "666 -123"
+*/
+
+function findMaxAndMinFromStr(str){
+    let arrOfNums = str.split(' ').map(item => Number(item));
+    return '' + Math.max(...arrOfNums) + ' ' + Math.min(...arrOfNums);
+}
+//alert(findMaxAndMinFromStr("4 5 29 54 4 0 -123 666 -64 1 -3 6 -6"))
