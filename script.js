@@ -959,3 +959,25 @@ function splitCamelCase(str){
 }
 
 //alert(splitCamelCase(''))
+
+/*
+№51
+
+Нарциссическое число - это число длины n, в котором
+сумма цифр в степени n равна исходному числу.
+
+Например:
+isNarcissistic(153) --> true;
+isNarcissistic(435) --> false;
+isNarcissistic(370) --> true;
+isNarcissistic(1032) --> false;
+*/
+
+function isNarcissistic(num){
+    let arrFromNum = String(num).split('');
+    return num === arrFromNum
+                   .reduce((sum, item) => 
+                   sum + Math.pow(item, arrFromNum.length), 0) ? true : false;
+}
+
+alert(isNarcissistic(370))
