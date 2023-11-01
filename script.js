@@ -1039,6 +1039,31 @@ function findOutlier(arr){
 }
 //alert(findOutlier([1,1,0,1,1]));
 
+
+/*
+№57
+
+Дан массив целых чисел, найдите тот, который встречается нечетное количество раз.
+Всегда будет только одно целое число, которое встречается нечетное количество раз.
+
+Например:
+func([20,1,-1,2,-2,3,3,5,5,1,2,4,20,4,-1,-2,5]) --> 5
+func([1,1,2,-2,5,2,4,4,-1,-2,5]) --> -1
+func([20,1,1,2,2,3,3,5,5,4,20,4,5]) --> 5
+*/
+
+function countOdd(arr){
+    let map = new Map();
+    for(let item of arr){
+        if(map.has(item)) map.set(item, 1 + map.get(item));
+        else map.set(item, 1);
+    }
+    for(let key of map.keys()){
+        if(map.get(key) % 2 == 1) return key;
+    }
+}
+//alert(countOdd([20,1,1,2,2,3,3,5,5,4,20,4,5]))
+
 /*
 №58
 
