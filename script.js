@@ -1007,3 +1007,34 @@ function checkDeliver3And5(num){
 }
 
 //alert(checkDeliver3And5(23))
+
+/*
+№53
+
+Вам предоставляется массив (который будет иметь длину не менее 3, 
+но может быть очень большим),
+содержащий целые числа. Массив либо полностью состоит из нечетных целых чисел,
+либо полностью состоит из четных целых чисел,
+за исключением одного целого числа N.
+Напишите метод, который принимает массив в качестве аргумента и возвращает
+этот «выброс» N.
+
+Например:
+findOutlier([0, 1, 2]) --> 1
+findOutlier([1, 2, 3]) --> 2
+findOutlier([2,6,8,10,3]) --> 3
+findOutlier([1,1,0,1,1]) --> 0
+*/
+
+function findOutlier(arr){
+    let countEven = 0;
+    let countOdd = 0;
+    for(let i =0; i < 3; i++){
+        if(arr[i] % 2 == 0) countEven ++;
+        if(arr[i] % 2 == 1) countOdd ++;
+    }
+    return countEven > countOdd ? 
+           arr.find(item => item % 2 == 1) :
+           arr.find(item => item % 2 == 0);
+}
+alert(findOutlier([1,1,0,1,1]));
