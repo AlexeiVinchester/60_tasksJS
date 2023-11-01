@@ -939,3 +939,23 @@ function findNextSquare(num){
     return (Number.isInteger(Math.sqrt(num))) ? Math.pow((Math.sqrt(num) + 1), 2) : -1;
 }
 //alert(findNextSquare(16))
+
+/*
+№49
+
+Напишите функцию так, чтобы она разбивала оболочку camelCase,
+используя пробел между словами.
+
+Например:
+"camelCasing"  -->  "camel Casing"
+
+"identifier"  -->  "identifier"
+
+"" -->  ""
+*/
+
+function splitCamelCase(str){
+    return str.replace(/([A-Z])/g, item => ` ${item}`)
+}
+
+//alert(splitCamelCase(''))
