@@ -1037,4 +1037,28 @@ function findOutlier(arr){
            arr.find(item => item % 2 == 1) :
            arr.find(item => item % 2 == 0);
 }
-alert(findOutlier([1,1,0,1,1]));
+//alert(findOutlier([1,1,0,1,1]));
+
+/*
+№58
+
+Реализуйте функцию unique_in_order, которая принимает в качестве аргумента
+последовательность и возвращает список элементов
+без каких-либо элементов с одинаковым значением рядом
+друг с другом и с сохранением исходного порядка элементов.
+
+Например:
+uniqueInOrder('AAAABBBCCDAABBB') --> ['A', 'B', 'C', 'D', 'A', 'B']
+uniqueInOrder('ABBCcAD')         --> ['A', 'B', 'C', 'c', 'A', 'D']
+uniqueInOrder([1,2,2,3,3])       --> [1,2,3]
+*/
+
+function uniqueInOrder(obj){
+    let result = [obj[0]];
+    for(let i = 0; i < obj.length-1; i++){
+        if(obj[i+1] === obj[i]) continue;
+        if(obj[i+1] !== obj[i]) result.push(obj[i+1]);
+    }
+    return result;
+}
+//alert(uniqueInOrder('AAAABBBCCDAABBB'))
