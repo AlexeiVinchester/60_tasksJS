@@ -980,4 +980,30 @@ function isNarcissistic(num){
                    sum + Math.pow(item, arrFromNum.length), 0) ? true : false;
 }
 
-alert(isNarcissistic(370))
+//alert(isNarcissistic(370))
+
+/*
+№52
+
+Если мы перечислим все натуральные числа ниже 10, 
+которые кратны 3 или 5, мы получим 3, 5, 6 и 9. Сумма этих кратных 23.
+Завершите решение так, чтобы оно возвращало 
+сумму всех кратных 3 или 5 числам ниже переданного числа.
+
+Например:
+solution(10) --> 23 3 5 6 9 
+solution(12) --> 33
+solution(23) --> 119
+*/
+
+function checkDeliver3And5(num){
+    let rangeArr = [];
+    let arrOfMatchNums = [];
+    for(let i = 1; i < num; i++) rangeArr.push(i);
+    for(let item of rangeArr){
+        if(item % 3 == 0 || item % 5 == 0) arrOfMatchNums.push(item); 
+    }
+    return arrOfMatchNums.reduce((sum, item) => sum + item, 0);
+}
+
+//alert(checkDeliver3And5(23))
