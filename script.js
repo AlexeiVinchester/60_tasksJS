@@ -219,6 +219,34 @@ function checkArrElemOnUniqueLetters(arr){
 //alert(checkArrElemOnUniqueLetters(["кот", "ток", "кто"]));
 
 /*
+№10
+
+№10
+
+Напишите функцию, которая возвращает сумму таким образом:
+
+Например:
+f(1)(2)(3) --> 6
+
+*/
+
+function f(a){
+    let currentSum = a;
+    function sum(b){
+        currentSum += b;
+        return sum;
+    }
+
+    sum.toString = function(){
+        return currentSum;
+    }
+
+    return sum;
+}
+
+//lert(f(1)(2)(3)(5))
+
+/*
 №11
 
 Напишите функцию, которая находит наиболее часто используемый элемент массива.
