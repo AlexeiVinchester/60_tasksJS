@@ -46,6 +46,25 @@ function moveZeros(arr){
     */
 }
 //alert(moveZeros([false,1,0,1,0,0,0,2,0,0,5,6,9,true,1,3,"a"]));
+
+/*
+Найдите недостающую букву.
+Напишите функцию, которая принимает в качестве параметра массив букв,
+расположенных по алфавиту и возвращает массив с недостающей буквой.
+Длина входного массива не меньше 2 и он содержит буквы только одного регистра.
+
+Например:
+findMissingLetter(['a','b','c','d','f']) --> 'e'
+*/
+
+function findMissingLetter(arr){
+    let alphabet = 'abcdefjhijklmnopqrstuvwxyz';
+    let indexOfFirstLetter = alphabet.indexOf(arr[0]);
+    let checkedPartOfAlphabet = alphabet.substr(indexOfFirstLetter, arr.length + 1);
+    return Array.from(checkedPartOfAlphabet).find((item) => !arr.includes(item))
+
+}
+//console.log(findMissingLetter(['q','t','u','v','w']));
 /*
 №3
 
@@ -1085,7 +1104,7 @@ validParentheses('()((()') --> false
 function validParentheses(str){
     return str.replaceAll('()', '').length === 0 ? true : false;
 }
-alert(validParentheses('()((()'));
+//alert(validParentheses('()((()'));
 
 /*
 №57
