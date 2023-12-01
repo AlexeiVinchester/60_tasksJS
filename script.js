@@ -1290,3 +1290,30 @@ function uniqueInOrder(obj){
     return result;
 }
 //alert(uniqueInOrder('AAAABBBCCDAABBB'))
+/*
+№59
+
+Для данного n возьмите сумму цифр n. 
+Если это значение имеет более одной цифры, 
+продолжайте уменьшать таким образом, пока
+не будет получено однозначное число. 
+Входными данными будет неотрицательное целое число.
+
+Например:
+digital_root(16)  -->  1 + 6 = 7
+digital_root(942)  --> 9 + 4 + 2 = 15  -->  1 + 5 = 6
+digital_root(132189) -->  1 + 3 + 2 + 1 + 8 + 9 = 24  -->  2 + 4 = 6
+digital_root(493193)  -->  4 + 9 + 3 + 1 + 9 + 3 = 29  -->  2 + 9 = 11  -->  1 + 1 = 2
+*/
+
+function digitalRoot(num){
+    while(num.toString().length !== 1){
+        num = num
+                 .toString()
+                 .split('')
+                 .reduce((sum, item) => +sum + +item , 0)
+    }
+    return num;
+}
+
+// console.log(digitalRoot(493193))
