@@ -1069,6 +1069,28 @@ function splitCamelCase(str){
 
 //alert(splitCamelCase(''))
 
+
+/*
+№50
+
+Создайте функцию с именем divisors, которая принимает
+целое число n > 1 и возвращает массив со всеми делителями 
+целого числа (кроме 1 и самого числа), от наименьшего до наибольшего.
+Если число простое, верните строку '(integer) is prime'
+*/
+
+function findAllDivisors(num){
+    let result = [];
+    for(let i = 2; i < num; i++){
+        if(num % i === 0){
+            result.push(i);
+        }
+    }
+    return result.length === 0 ? `${num} is prime` : result;
+}
+
+//console.log(findAllDivisors(125));
+
 /*
 №51
 
