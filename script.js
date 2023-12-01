@@ -1210,6 +1210,40 @@ function validParentheses(str){
 //alert(validParentheses('()((()'));
 
 /*
+№56
+
+Маркетинговая команда тратит слишком много времени на ввод хэштегов.
+Давайте поможем им с нашим собственным генератором хештегов!
+Он должен начинаться с хэштега (#).
+Все слова должны начинаться с заглавной буквы.
+Если окончательный результат длиннее 140 символов, он должен вернуть false.
+Если ввод или результат - пустая строка, он должен вернуть false.
+
+Например:
+" Hello there thanks for trying my Kata"  -->  "#HelloThereThanksForTryingMyKata"
+"    Hello     World   "   -->  "#HelloWorld"
+""  -->  false
+*/
+
+function putHashtagInTheBeginning(str){
+    if(str.trim().length === 0){
+        return false;
+    }
+    str = str.trim();
+    for(let symbol of str){
+        if(symbol === ' '){
+            let position = str.indexOf(' ');
+            str = str.slice(0, position) 
+                     + str[position + 1].toUpperCase() 
+                     + str.slice(position + 2);
+        }
+    }
+    let result = '#' + str[0].toUpperCase() + str.slice(1);
+    return result.length > 140 ? false : result;
+}
+
+//console.log(putHashtagInTheBeginning("       Hello there thanks for trying my Kata"));
+/*
 №57
 
 Дан массив целых чисел, найдите тот, который встречается нечетное количество раз.
