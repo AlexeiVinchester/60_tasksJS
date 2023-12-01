@@ -1171,6 +1171,25 @@ function findOutlier(arr){
 //alert(findOutlier([1,1,0,1,1]));
 
 /*
+№54
+
+Переместите первую букву каждого слова в его конец,
+затем добавьте «ау» в конец слова. Не трогайте знаки препинания.
+
+Например:
+pigIt('Pig latin is cool') --> 'igPay atinlay siay oolcay'
+pigIt('This is my string') --> 'hisTay siay ymay tringsay'
+*/
+
+function pigIt(str){
+    return str
+              .split(' ')
+              .map(item => item.slice(1) + item[0] + 'ay')
+              .join(' ');
+}
+//console.log(pigIt('This is my string'));
+
+/*
 №55
 
 Напишите функцию, которая принимает строку круглых скобок и определяет,
