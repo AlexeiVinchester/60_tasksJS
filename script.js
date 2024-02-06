@@ -158,6 +158,9 @@ function busStop(arr){
     return passengerIn - passengerOut;
 }
 
+function busStops(arr){
+    return arr.reduce((current, item) => current + item[0] - item[1], 0);
+}
 //alert(busStop([[3, 0], [9, 1], [4, 10], [12, 2], [6, 1], [7, 10]]))
 /*
 №6
