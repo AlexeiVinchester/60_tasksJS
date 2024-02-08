@@ -222,6 +222,10 @@ function maskify(str){
     let secondPart = str.slice(-4);
     return firsrPart + secondPart;
 }
+
+function muskify_2(str){
+    return '#'.repeat(str.length - 4) + str.slice(-4);
+}
 //alert(maskify("4556364607935616"));
 
 /*
