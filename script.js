@@ -197,6 +197,11 @@ function squareDigits(num){
     }
     return result;
 }
+
+function squareDigits_1(num){
+    return +[...String(num)].reduce((current, item) => 
+        current + Math.pow(+item, 2), '');
+}
 //alert(squareDigits(578009));
 
 /*
