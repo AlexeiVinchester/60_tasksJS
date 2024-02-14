@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 /*
 №1
@@ -7,22 +7,22 @@
 
 Например:
 moveZeros([false,1,0,1,2,0,1,3,"a"]) --> [false,1,1,2,1,3,"a",0,0]
-*/ 
+*/
 
 /*
     Первое решение - изменяет сам входной массив
 */
 
-function moveZerosArr(arr){
+function moveZerosArr(arr) {
     let count = 0;
-    for(let i = 0; i < arr.length; ++i){
-        if(arr[i] === 0){
-           arr.splice(i, 1);
-           count++;
-           i--; // нужно на случай нескольких нулей подряд
+    for (let i = 0; i < arr.length; ++i) {
+        if (arr[i] === 0) {
+            arr.splice(i, 1);
+            count++;
+            i--; // нужно на случай нескольких нулей подряд
         }
     }
-    for(let i = 0; i < count; ++i){
+    for (let i = 0; i < count; ++i) {
         arr.push(0);
     }
     return arr;
@@ -32,22 +32,22 @@ function moveZerosArr(arr){
 /*
     Второе решение - подменяет входной массив
 */
-function moveZeros(arr){
+
+function moveZeros(arr) {
     let filteredArr = arr.filter(index => index !== 0);
     let zeroAmount = arr.length - filteredArr.length;
     return filteredArr.concat(new Array(zeroAmount).fill(0));
     /*
-        или вот так
-
         for(let i = 0; i < zeroAmount; ++i){
             filteredArr.push(0);
         }
         return filteredArr;
     */
 }
-//alert(moveZeros([false,1,0,1,0,0,0,2,0,0,5,6,9,true,1,3,"a"]));
+
 
 /*
+№2
 Найдите недостающую букву.
 Напишите функцию, которая принимает в качестве параметра массив букв,
 расположенных по алфавиту и возвращает массив с недостающей буквой.
@@ -57,14 +57,23 @@ function moveZeros(arr){
 findMissingLetter(['a','b','c','d','f']) --> 'e'
 */
 
-function findMissingLetter(arr){
+function findMissingLetter(arr) {
     let alphabet = 'abcdefjhijklmnopqrstuvwxyz';
     let indexOfFirstLetter = alphabet.indexOf(arr[0]);
     let checkedPartOfAlphabet = alphabet.substr(indexOfFirstLetter, arr.length + 1);
     return Array.from(checkedPartOfAlphabet).find((item) => !arr.includes(item))
 
 }
-//console.log(findMissingLetter(['q','t','u','v','w']));
+
+function findMissingLetter_2(array) {
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    const partOfAlphabet = alphabet.slice(
+        alphabet.indexOf(array[0]),
+        alphabet.indexOf(array.at(-1)) + 1
+    );
+    return Array.from(partOfAlphabet).find(item => !array.includes(item)).toString();
+}
+
 /*
 №3
 
@@ -83,11 +92,11 @@ likes(['Max', 'John', 'Mark']) --> 'Max, John and Mark like this')
 likes(['Alex', 'Jacob', 'Mark', 'Max']) --> 'Alex, Jacob and 2 others like this'
 */
 
-function likes(arr){
+function likes(arr) {
     if (arr.length == 0) return 'no one likes this';
-    else if(arr.length == 1) return `${arr[0]} likes this`;
-    else if(arr.length == 2) return `${arr[0]} and ${arr[1]} like this`;
-    else if(arr.length == 3) return `${arr[0]}, ${arr[1]} and ${arr[2]} like this`;
+    else if (arr.length == 1) return `${arr[0]} likes this`;
+    else if (arr.length == 2) return `${arr[0]} and ${arr[1]} like this`;
+    else if (arr.length == 3) return `${arr[0]}, ${arr[1]} and ${arr[2]} like this`;
     else return `${arr[0]}, ${arr[1]} and ${arr.length - 2} others like this`;
 }
 
@@ -106,18 +115,18 @@ function likes(arr){
 Функция должна возвращать массив всех анаграмм или пустой массив,
 если анаграмм не обнаружено.
 
-*/ 
+*/
 
-function findAnagramms(word, arr){
-    function sortWord(str){
+function findAnagramms(word, arr) {
+    function sortWord(str) {
         return str.toLowerCase().split('').sort().join('');
     }
     let arrOfAnogramms = [];
     let sortedWord = sortWord(word);
-    
+
     for (let key of arr) {
         let sortedKey = sortWord(key);
-        if(sortedKey == sortedWord){
+        if (sortedKey == sortedWord) {
             arrOfAnogramms.push(key);
         }
     }
@@ -125,7 +134,10 @@ function findAnagramms(word, arr){
     return arrOfAnogramms;
 }
 
-//alert(findAnagramms('abba', ['aabb', 'abcd', 'bbaa', 'dada']));
+function anagrams_2(word, array){
+    const getCleanWord = (word) => word.toLowerCase().split('').sort().join('');
+    return array.filter(item => getCleanWord(item) === getCleanWord(word));
+}
 
 
 /*
@@ -148,17 +160,17 @@ function findAnagramms(word, arr){
 busStops([[3, 0], [9, 1], [4, 10], [12, 2], [6, 1], [7, 10]]) --> 17
 */
 
-function busStop(arr){
+function busStop(arr) {
     let passengerIn = 0;
     let passengerOut = 0;
-    for(let stop of arr){
+    for (let stop of arr) {
         passengerIn += stop[0];
         passengerOut += stop[1];
     }
     return passengerIn - passengerOut;
 }
 
-function busStops(arr){
+function busStops(arr) {
     return arr.reduce((current, item) => current + item[0] - item[1], 0);
 }
 //alert(busStop([[3, 0], [9, 1], [4, 10], [12, 2], [6, 1], [7, 10]]))
@@ -174,11 +186,14 @@ function busStops(arr){
 longest("xyaabbbccccdefww", "xxxxyyyyabklmopq") --> "abcdefklmopqxy"
 */
 
-function longest(str1, str2){
+function longest(str1, str2) {
     let set = new Set(Array.from(str1).concat(Array.from(str2)));
     return Array.from(set).sort().join('');
 }
-//alert(longest("xyaabbbccccdefww", "xxxxyyyyabklmopq"));
+
+function longest_2(str1, str2){
+    return Array.from(new Set(str1 + str2)).sort().join('');
+}
 
 /*
 №7
@@ -190,19 +205,22 @@ function longest(str1, str2){
 squareDigits(9119) --> 811181    
 */
 
-function squareDigits(num){
+function squareDigits(num) {
     let result = '';
-    for(let i of String(num)){
+    for (let i of String(num)) {
         result += +i * +i;
     }
     return result;
 }
 
-function squareDigits_1(num){
-    return +[...String(num)].reduce((current, item) => 
+function squareDigits_2(num) {
+    return +[...String(num)].reduce((current, item) =>
         current + Math.pow(+item, 2), '');
 }
-//alert(squareDigits(578009));
+
+function squareDigits_3(num){
+    return +(Array.from(String(num)).map(item => Math.pow(+item, 2).toString()).join(''));
+}
 
 /*
 №8
@@ -217,16 +235,15 @@ function squareDigits_1(num){
 maskify("4556364607935616") --> "############5616"
 */
 
-function maskify(str){
+function maskify(str) {
     let firsrPart = new Array(str.length - 4).fill('#').join('');
     let secondPart = str.slice(-4);
     return firsrPart + secondPart;
 }
 
-function muskify_2(str){
+function muskify_2(str) {
     return '#'.repeat(str.length - 4) + str.slice(-4);
 }
-//alert(maskify("4556364607935616"));
 
 /*
 №9
@@ -238,20 +255,20 @@ function muskify_2(str){
 ["кот", "тк", "кТо"] --> false
 */
 
-function checkArrElemOnUniqueLetters(arr){
+function checkArrElemOnUniqueLetters(arr) {
     let sortedElemArr = arr.map(item => item
-                                        .toLowerCase()
-                                        .split('')
-                                        .sort()
-                                        .join(''));
+        .toLowerCase()
+        .split('')
+        .sort()
+        .join(''));
     return (new Set(sortedElemArr).size == 1) ? true : false;
 }
 
-//alert(checkArrElemOnUniqueLetters(["кот", "ток", "кто"]));
+function isSameLettersInWords(array){
+    return new Set(array.map(item => item.toLowerCase().split('').sort().join())).size > 1 ? false : true;
+}
 
 /*
-№10
-
 №10
 
 Напишите функцию, которая возвращает сумму таким образом:
@@ -261,21 +278,37 @@ f(1)(2)(3) --> 6
 
 */
 
-function f(a){
+function f(a) {
     let currentSum = a;
-    function sum(b){
+    function sum(b) {
         currentSum += b;
         return sum;
     }
 
-    sum.toString = function(){
+    sum.toString = function () {
         return currentSum;
     }
 
     return sum;
 }
 
-//lert(f(1)(2)(3)(5))
+/*
+    В данном случае вызовы заканчиваются тогда, когда не будет
+    аргументов.
+*/
+
+function sum(a){
+    let current = a;
+    function insideSum(...args){
+        if(args.length){
+            current += args[0];
+            return insideSum;
+        } else {
+            return current;
+        }
+    }
+    return insideSum;
+}
 
 /*
 №11
@@ -286,19 +319,19 @@ function f(a){
 const array=[7, 'z', 'z', 'z', 3, 7, 'z', 7, 'z', 3, 5, 7]; --> "z"
 */
 
-function oftenElemOfArr(arr){
+function oftenElemOfArr(arr) {
     let countOfElem = new Map();
-    for(let elem of arr){
-        if(countOfElem.has(elem)){
+    for (let elem of arr) {
+        if (countOfElem.has(elem)) {
             countOfElem.set(elem, 1 + countOfElem.get(elem));
-        } else{
+        } else {
             countOfElem.set(elem, 1)
-        }    
+        }
     }
     let arrOfKeys = Array.from(countOfElem.values());
     let mostOftenCount = Math.max.apply(null, arrOfKeys);
-    for(let key of countOfElem.keys()){
-        if(countOfElem.get(key) == mostOftenCount){
+    for (let key of countOfElem.keys()) {
+        if (countOfElem.get(key) == mostOftenCount) {
             return key;
         }
     }
@@ -317,7 +350,7 @@ const arr1 = [1, [2,[3,[4]]]]; --> [1,2,3,4];
 const arr2 = [1, [2], [3, [[4]]],[5,6]]; --> [1,2,3,4,5,6];
 */
 
-function expand(arr){
+function expand(arr) {
     return arr.flat(Infinity);
 }
 
@@ -335,20 +368,20 @@ const array2 = [4, 5, 6];
 func(array1,array2) // [5,7,9,4,5]
 */
 
-function sumSameArrElements(arr1, arr2){
-    function worker(maxArr, minArr){
+function sumSameArrElements(arr1, arr2) {
+    function worker(maxArr, minArr) {
         let result = [];
-        for(let i = 0; i < minArr.length; ++i){
+        for (let i = 0; i < minArr.length; ++i) {
             result[i] = maxArr[i] + minArr[i];
         }
         return result.concat(maxArr.splice(minArr.length, (maxArr.length - minArr.length)));
     }
-    if(arr1.length > arr2.length){
-       return worker(arr1, arr2);
-    } else{
+    if (arr1.length > arr2.length) {
+        return worker(arr1, arr2);
+    } else {
         return worker(arr2, arr1);
     }
-    
+
 }
 
 //alert(sumSameArrElements( [1, 2, 3, 4, 5], [4, 5, 6] ))
@@ -366,7 +399,7 @@ let arr = ["php", "php", "css", "css",
 removeDuplicates(arr); --> ["php","css","script","html","java"]
 */
 
-function removeDuplicates(arr){
+function removeDuplicates(arr) {
     return Array.from(new Set(arr));
 }
 //alert(removeDuplicates(["php", "php", "css", "css","script", "script", "html", "html", "java"]));
@@ -377,16 +410,16 @@ function removeDuplicates(arr){
 качестве аргумента и вставляет двоеточие (:) между двумя нечетными числами. 
 Например, если вводится число 55639217, то на выходе должно быть 5:563:921:7
 */
-function colonOdd(num){
+function colonOdd(num) {
     let str = String(num);
     let resultArr = [str[0]];
-    for(let i = 1; i < str.length; ++i){
-        function checkOdd(num){
+    for (let i = 1; i < str.length; ++i) {
+        function checkOdd(num) {
             return (num % 2) == 1 ? true : false;
         }
-        if(checkOdd(str[i-1]) && (checkOdd([str[i]]))){
+        if (checkOdd(str[i - 1]) && (checkOdd([str[i]]))) {
             resultArr.push(':', str[i]);
-        } else{
+        } else {
             resultArr.push(str[i]);
         }
     }
@@ -404,7 +437,7 @@ function colonOdd(num){
 const vegetables = ['Капуста', 'Репа', 'Редиска'];
 */
 
-function copyArr(arr){
+function copyArr(arr) {
     return arr.slice();
 }
 
@@ -426,8 +459,8 @@ str.endsWith(str1)) -->  false
 str.endsWith(str2)) -->  true
 */
 
-String.prototype.endsWith = function(str){
-    if(this.slice(-str.length) == str) return true;
+String.prototype.endsWith = function (str) {
+    if (this.slice(-str.length) == str) return true;
     else return false;
 }
 //const str = "Каждый охотник желает знать"; 
@@ -447,7 +480,7 @@ comparison('string', 'StRiNg') -->  true
 comparison('string', 'Redev') -->  false
 */
 
-function comparison(str1, str2){
+function comparison(str1, str2) {
     return str1.toLowerCase() == str2.toLowerCase();
 }
 //alert(comparison('STRING', 'StRiNg'));
@@ -462,10 +495,10 @@ const str = "    Pasha is a good      boy     ";
 strip(str) --> "Pasha is a good boy"
 */
 
-function strip(str){
+function strip(str) {
     return str.replace(/\s+/g, ' ')
-              .replace(/^\s/, '')
-              .replace(/\s$/, '');
+        .replace(/^\s/, '')
+        .replace(/\s$/, '');
 }
 
 //alert(strip('    Max is a good      boy     '))
@@ -480,7 +513,7 @@ const str = "Сила тяжести приложена к центру масс
 cutString(str, 5) --> "Сила тяжести приложена к центру"
 */
 
-function cutString(str, n){
+function cutString(str, n) {
     return str.split(' ').slice(0, n).join(' ');
 }
 
@@ -497,7 +530,7 @@ function cutString(str, n){
 alphabetize("redev") --> "deerv"
 */
 
-function alphabetize(str){
+function alphabetize(str) {
     return str.split('').sort().join('');
 }
 //alert(alphabetize("redev"));
@@ -513,7 +546,7 @@ uniqueLetters('anaconda'); --> 'ancod'
 uniqueLetters('redev'); --> 'redv'
 */
 
-function uniqueLetters(str){
+function uniqueLetters(str) {
     return Array.from(new Set(str)).join('');
 }
 
@@ -532,7 +565,7 @@ const str = "вишня, груша, слива, груша";
 removeDuplicate(str) --> "вишня, груша, слива"
 */
 
-function removeDuplicate(str){
+function removeDuplicate(str) {
     let setOfWords = new Set(str.split(', '));
     return Array.from(setOfWords).join(', ');
 }
@@ -551,7 +584,7 @@ let str = 'abc def def lom abc abc def';
 replaceAll('abc', 'x', str) --> 'x def def lom x x def'
 */
 
-function replaceAll(find, replace, str){
+function replaceAll(find, replace, str) {
     return str.replaceAll(find, replace);
 }
 //let str = 'abc def def lom abc abc def';
@@ -569,7 +602,7 @@ let str = 'abc def ghi jkl mno pqr stu';
 Например:
 str.startsWith('abc') --> 
 */
-String.prototype.startsWith = function(substr){
+String.prototype.startsWith = function (substr) {
     return this.slice(0, substr.length) == substr ? true : false;
 }
 
@@ -584,7 +617,7 @@ alert(str.startsWith('abc def hi '));*/
 которая преобразовывает первый символ строки в верхний регистр.
 */
 
-function capitalizeFirstLetter(str){
+function capitalizeFirstLetter(str) {
     return str.split('')[0].toUpperCase() + str.slice(1);
 }
 
@@ -601,7 +634,7 @@ function capitalizeFirstLetter(str){
 isUpperCase('tasks JavaScript', 6); --> true
 */
 
-function isUpperCase(str, character){
+function isUpperCase(str, character) {
     let elem = str.split('')[character];
     return (elem == elem.toUpperCase()) ? true : false;
 }
@@ -632,16 +665,16 @@ createDreamTeam(['Olivia', 1111, 'Lily', 'Oscar', true, null]) --> 'LOO'
 
 */
 
-function createDreamTeam(arr){
+function createDreamTeam(arr) {
     let arrOfCorrectNames = [];
-    for(let item of arr){
-        if(typeof item == 'string'){
+    for (let item of arr) {
+        if (typeof item == 'string') {
             arrOfCorrectNames.push(item);
         }
     }
-    if(arrOfCorrectNames.length === 0) return false;
+    if (arrOfCorrectNames.length === 0) return false;
     let dreamTeamName = [];
-    for(let item of arrOfCorrectNames){
+    for (let item of arrOfCorrectNames) {
         dreamTeamName.push(item[0].toUpperCase());
     }
     return dreamTeamName.sort().join('');
@@ -654,8 +687,8 @@ function createDreamTeam(arr){
 Напишите функцию, которая находит факториал 5.
 */
 
-function factorial(n){
-    return n <= 1 ? 1 : n * factorial(n-1);
+function factorial(n) {
+    return n <= 1 ? 1 : n * factorial(n - 1);
 }
 
 //alert(factorial(8))
@@ -675,7 +708,7 @@ function factorial(n){
 countCats([[0,1,"^^"],[9,"^^",2],["^^",8,7]]) --> 3
 */
 
-function countCats(arr){
+function countCats(arr) {
     return arr.flat(1).filter(item => item === '^^').length;
 }
 
@@ -689,7 +722,7 @@ function countCats(arr){
 
 */
 
-function checkPolindrom(str){
+function checkPolindrom(str) {
     let clearStr = str.toLowerCase().replace(/[^a-zа-я]+/g, '');
     return (clearStr === clearStr.split('').reverse().join('')) ? true : false;
 }
@@ -704,21 +737,21 @@ function checkPolindrom(str){
 solution("redevCourses") -> "redev_courses"
 */
 
-function solution(str){
+function solution(str) {
     let snake_case = ''
-    for(let i = 0; i < str.length; ++i){
-        if(str[i] == str[i].toUpperCase()){
-            snake_case = str.slice(0, i) + 
-                         '_' + 
-                         str[i].toLowerCase() + 
-                         str.slice(i+1);
+    for (let i = 0; i < str.length; ++i) {
+        if (str[i] == str[i].toUpperCase()) {
+            snake_case = str.slice(0, i) +
+                '_' +
+                str[i].toLowerCase() +
+                str.slice(i + 1);
             str = snake_case;
         }
     }
     return snake_case
 }
 
-function solution_1(str){
+function solution_1(str) {
     return str.replace(/([A-Z])/g, item => `_${item.toLowerCase()}`);
 }
 /*
@@ -737,7 +770,7 @@ alert(solution("redevCoursesRTffRRR") == solution_1("redevCoursesRTffRRR"));
 "This is an example!" -> "sihT si na !elpmaxe"
 */
 
-function changeFirstAndLastLettersInWord(str){
+function changeFirstAndLastLettersInWord(str) {
     let arrOfWords = str.split(' ');
     let resultArrOfWords = arrOfWords.map(item =>
         item.split('').reverse().join(''));
@@ -763,13 +796,13 @@ function changeFirstAndLastLettersInWord(str){
 "is2 Thi1s T4est 3a" -> "Thi1s is2 3a T4est"
 */
 
-function sortStrByNumber(str){
-    if(str.length === 0) return '';
+function sortStrByNumber(str) {
+    if (str.length === 0) return '';
     let arrOfWords = str.split(' ');
     let resultArrOfWords = new Array(arrOfWords.length);
-    for(let word of arrOfWords){
-        let pos = word.replace(/[^0-9]/g,'');
-        resultArrOfWords[pos-1] = word;
+    for (let word of arrOfWords) {
+        let pos = word.replace(/[^0-9]/g, '');
+        resultArrOfWords[pos - 1] = word;
     }
     return resultArrOfWords.join(' ');
 }
@@ -785,8 +818,8 @@ function sortStrByNumber(str){
 [12,423,54,1235,3,15,2,52] --> 5
 */
 
-function sumOfTwoMinNumbers(arr){
-    let sortedArr = arr.sort((a,b) => a-b);
+function sumOfTwoMinNumbers(arr) {
+    let sortedArr = arr.sort((a, b) => a - b);
     return sortedArr[0] + sortedArr[1];
 }
 
@@ -802,17 +835,17 @@ function sumOfTwoMinNumbers(arr){
 Например: если n = 5 на выходе у Вас должно быть "5 4 3 2 1"
 */
 
-function strQueryFromNumbers(num){
+function strQueryFromNumbers(num) {
     let resultStr = '';
-    if(num < 0){
+    if (num < 0) {
         num = prompt('Enter correct num > 0!', '1');
-    } 
-    for(let i = num; i >= 1; --i){
-        if(i == 1) resultStr += i;
+    }
+    for (let i = num; i >= 1; --i) {
+        if (i == 1) resultStr += i;
         else resultStr += i + ' ';
     }
     return resultStr;
-    
+
 }
 
 //alert(strQueryFromNumbers(5).length)
@@ -827,10 +860,10 @@ arrayDiff([1,2],[1]) --> [2]
 arrayDiff([1,2,2,2,3,4],[2,3]) --> [1,4]
 */
 
-function arrayDiff(arr1, arr2){
+function arrayDiff(arr1, arr2) {
     let result = [];
-    for(let item of arr1){
-        if(!arr2.includes(item)){
+    for (let item of arr1) {
+        if (!arr2.includes(item)) {
             result.push(item)
         }
     }
@@ -851,7 +884,7 @@ function arrayDiff(arr1, arr2){
 Вы можете предположить, что все значения являются целыми числами.
 Не изменяйте входной массив
 */
-function invert(arr){
+function invert(arr) {
     return arr.map(item => -item)
 }
 //alert(invert([1,-2,4,-5]))
@@ -872,9 +905,9 @@ findNeedle(["bla","wekmvever","needle","bntyn"]) --> "Нашел иголку н
 
 */
 
-function findNeedle(arr){
-    for(let item of arr){
-        if(item === 'needle'){
+function findNeedle(arr) {
+    for (let item of arr) {
+        if (item === 'needle') {
             return `Нашел иголку на позиции ${arr.indexOf(item)}`;
         }
     }
@@ -892,11 +925,11 @@ function findNeedle(arr){
 simple("") --> 3
 */
 
-function simple(str){
+function simple(str) {
     let clearStr = str.replace(/[^a-zа-яё\s]/gi, '').replace('  ', ' ');
     alert(clearStr);
     let setOfLength = new Set();
-    for(let item of clearStr.split(' ')){
+    for (let item of clearStr.split(' ')) {
         setOfLength.add(item.length);
     }
     return Math.min.apply(null, Array.from(setOfLength));
@@ -915,8 +948,8 @@ function simple(str){
 [-5, -7, -2, 5] --> [- 7, 5]
 */
 
-function MinAndMaxNumOfArr(arr){
-    let sortedArr = arr.sort((a,b) => a-b);
+function MinAndMaxNumOfArr(arr) {
+    let sortedArr = arr.sort((a, b) => a - b);
     return [sortedArr[0], sortedArr.at(-1)];
 }
 //alert(MinAndMaxNumOfArr([-5, -7, -2, 5]))
@@ -939,14 +972,14 @@ function MinAndMaxNumOfArr(arr){
 toJadenCase('пишите код - это круто') --> 'Пишите Код - Это Круто'
 */
 
-function toJadenCase(str){
+function toJadenCase(str) {
     let correctStr = '';
-    for(let i = 0; i < str.length; i++){
-        if(str[i] == ' '){
-            correctStr = str.slice(0, i+1) + 
-                         str[i+1].toUpperCase() +
-                         str.slice(i+2);
-            str = correctStr;                
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] == ' ') {
+            correctStr = str.slice(0, i + 1) +
+                str[i + 1].toUpperCase() +
+                str.slice(i + 2);
+            str = correctStr;
         }
     }
     return correctStr[0].toUpperCase() + correctStr.slice(1);
@@ -967,9 +1000,9 @@ correctPin('5567') --> true
 correctPin('5432567') --> false
 */
 
-function correctPin(str){
+function correctPin(str) {
     let correctPin = /^[0-9]+$/.test(str);
-    if(correctPin){
+    if (correctPin) {
         return (str.length == 4 || str.length == 6) ? true : false;
     } else return false;
 }
@@ -988,14 +1021,14 @@ accum("RqaEzty") --> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
 accum("cwAt") --> "C-Ww-Aaa-Tttt"
 */
 
-function accum(str){
+function accum(str) {
     return Array.from(str)
-                .reduce((result, item, index) =>
-                                                result 
-                                                + '-' 
-                                                + item.toUpperCase() 
-                                                + item.toLowerCase().repeat(index), '')
-                .slice(1)
+        .reduce((result, item, index) =>
+            result
+            + '-'
+            + item.toUpperCase()
+            + item.toLowerCase().repeat(index), '')
+        .slice(1)
 }
 
 //console.log(accum('RqaEzty'));
@@ -1010,7 +1043,7 @@ function accum(str){
 list("4 5 29 54 4 0 -123 666 -64 1 -3 6 -6")  --> "666 -123"
 */
 
-function findMaxAndMinFromStr(str){
+function findMaxAndMinFromStr(str) {
     let arrOfNums = str.split(' ').map(item => Number(item));
     return '' + Math.max(...arrOfNums) + ' ' + Math.min(...arrOfNums);
 }
@@ -1029,7 +1062,7 @@ function findMaxAndMinFromStr(str){
 Например: "Этот сайт для лузеров ЛОЛ!" --> "тт сйт дл лзрв ЛЛ!"
 */
 
-function blockTrolling(str){
+function blockTrolling(str) {
     return str.replace(/[аеёиоуэюяы]/gi, '');
 }
 
@@ -1056,7 +1089,7 @@ findNextSquare(16); --> 25
 findNextSquare(64); --> 81
 */
 
-function findNextSquare(num){
+function findNextSquare(num) {
     return (Number.isInteger(Math.sqrt(num))) ? Math.pow((Math.sqrt(num) + 1), 2) : -1;
 }
 //alert(findNextSquare(16))
@@ -1075,7 +1108,7 @@ function findNextSquare(num){
 "" -->  ""
 */
 
-function splitCamelCase(str){
+function splitCamelCase(str) {
     return str.replace(/([A-Z])/g, item => ` ${item}`)
 }
 
@@ -1091,10 +1124,10 @@ function splitCamelCase(str){
 Если число простое, верните строку '(integer) is prime'
 */
 
-function findAllDivisors(num){
+function findAllDivisors(num) {
     let result = [];
-    for(let i = 2; i < num; i++){
-        if(num % i === 0){
+    for (let i = 2; i < num; i++) {
+        if (num % i === 0) {
             result.push(i);
         }
     }
@@ -1116,11 +1149,11 @@ isNarcissistic(370) --> true;
 isNarcissistic(1032) --> false;
 */
 
-function isNarcissistic(num){
+function isNarcissistic(num) {
     let arrFromNum = String(num).split('');
     return num === arrFromNum
-                   .reduce((sum, item) => 
-                   sum + Math.pow(item, arrFromNum.length), 0) ? true : false;
+        .reduce((sum, item) =>
+            sum + Math.pow(item, arrFromNum.length), 0) ? true : false;
 }
 
 //alert(isNarcissistic(370))
@@ -1139,12 +1172,12 @@ solution(12) --> 33
 solution(23) --> 119
 */
 
-function checkDeliver3And5(num){
+function checkDeliver3And5(num) {
     let rangeArr = [];
     let arrOfMatchNums = [];
-    for(let i = 1; i < num; i++) rangeArr.push(i);
-    for(let item of rangeArr){
-        if(item % 3 == 0 || item % 5 == 0) arrOfMatchNums.push(item); 
+    for (let i = 1; i < num; i++) rangeArr.push(i);
+    for (let item of rangeArr) {
+        if (item % 3 == 0 || item % 5 == 0) arrOfMatchNums.push(item);
     }
     return arrOfMatchNums.reduce((sum, item) => sum + item, 0);
 }
@@ -1169,16 +1202,16 @@ findOutlier([2,6,8,10,3]) --> 3
 findOutlier([1,1,0,1,1]) --> 0
 */
 
-function findOutlier(arr){
+function findOutlier(arr) {
     let countEven = 0;
     let countOdd = 0;
-    for(let i =0; i < 3; i++){
-        if(arr[i] % 2 == 0) countEven ++;
-        if(arr[i] % 2 == 1) countOdd ++;
+    for (let i = 0; i < 3; i++) {
+        if (arr[i] % 2 == 0) countEven++;
+        if (arr[i] % 2 == 1) countOdd++;
     }
-    return countEven > countOdd ? 
-           arr.find(item => item % 2 == 1) :
-           arr.find(item => item % 2 == 0);
+    return countEven > countOdd ?
+        arr.find(item => item % 2 == 1) :
+        arr.find(item => item % 2 == 0);
 }
 //alert(findOutlier([1,1,0,1,1]));
 
@@ -1193,11 +1226,11 @@ pigIt('Pig latin is cool') --> 'igPay atinlay siay oolcay'
 pigIt('This is my string') --> 'hisTay siay ymay tringsay'
 */
 
-function pigIt(str){
+function pigIt(str) {
     return str
-              .split(' ')
-              .map(item => item.slice(1) + item[0] + 'ay')
-              .join(' ');
+        .split(' ')
+        .map(item => item.slice(1) + item[0] + 'ay')
+        .join(' ');
 }
 //console.log(pigIt('This is my string'));
 
@@ -1216,7 +1249,7 @@ validParentheses('()()') --> true
 validParentheses('()((()') --> false
 */
 
-function validParentheses(str){
+function validParentheses(str) {
     return str.replaceAll('()', '').length === 0 ? true : false;
 }
 //alert(validParentheses('()((()'));
@@ -1237,17 +1270,17 @@ function validParentheses(str){
 ""  -->  false
 */
 
-function putHashtagInTheBeginning(str){
-    if(str.trim().length === 0){
+function putHashtagInTheBeginning(str) {
+    if (str.trim().length === 0) {
         return false;
     }
     str = str.trim();
-    for(let symbol of str){
-        if(symbol === ' '){
+    for (let symbol of str) {
+        if (symbol === ' ') {
             let position = str.indexOf(' ');
-            str = str.slice(0, position) 
-                     + str[position + 1].toUpperCase() 
-                     + str.slice(position + 2);
+            str = str.slice(0, position)
+                + str[position + 1].toUpperCase()
+                + str.slice(position + 2);
         }
     }
     let result = '#' + str[0].toUpperCase() + str.slice(1);
@@ -1267,14 +1300,14 @@ func([1,1,2,-2,5,2,4,4,-1,-2,5]) --> -1
 func([20,1,1,2,2,3,3,5,5,4,20,4,5]) --> 5
 */
 
-function countOdd(arr){
+function countOdd(arr) {
     let map = new Map();
-    for(let item of arr){
-        if(map.has(item)) map.set(item, 1 + map.get(item));
+    for (let item of arr) {
+        if (map.has(item)) map.set(item, 1 + map.get(item));
         else map.set(item, 1);
     }
-    for(let key of map.keys()){
-        if(map.get(key) % 2 == 1) return key;
+    for (let key of map.keys()) {
+        if (map.get(key) % 2 == 1) return key;
     }
 }
 //alert(countOdd([20,1,1,2,2,3,3,5,5,4,20,4,5]))
@@ -1293,11 +1326,11 @@ uniqueInOrder('ABBCcAD')         --> ['A', 'B', 'C', 'c', 'A', 'D']
 uniqueInOrder([1,2,2,3,3])       --> [1,2,3]
 */
 
-function uniqueInOrder(obj){
+function uniqueInOrder(obj) {
     let result = [obj[0]];
-    for(let i = 0; i < obj.length-1; i++){
-        if(obj[i+1] === obj[i]) continue;
-        if(obj[i+1] !== obj[i]) result.push(obj[i+1]);
+    for (let i = 0; i < obj.length - 1; i++) {
+        if (obj[i + 1] === obj[i]) continue;
+        if (obj[i + 1] !== obj[i]) result.push(obj[i + 1]);
     }
     return result;
 }
@@ -1318,12 +1351,12 @@ digital_root(132189) -->  1 + 3 + 2 + 1 + 8 + 9 = 24  -->  2 + 4 = 6
 digital_root(493193)  -->  4 + 9 + 3 + 1 + 9 + 3 = 29  -->  2 + 9 = 11  -->  1 + 1 = 2
 */
 
-function digitalRoot(num){
-    while(num.toString().length !== 1){
+function digitalRoot(num) {
+    while (num.toString().length !== 1) {
         num = num
-                 .toString()
-                 .split('')
-                 .reduce((sum, item) => +sum + +item , 0)
+            .toString()
+            .split('')
+            .reduce((sum, item) => +sum + +item, 0)
     }
     return num;
 }
