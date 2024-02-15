@@ -134,7 +134,7 @@ function findAnagramms(word, arr) {
     return arrOfAnogramms;
 }
 
-function anagrams_2(word, array){
+function anagrams_2(word, array) {
     const getCleanWord = (word) => word.toLowerCase().split('').sort().join('');
     return array.filter(item => getCleanWord(item) === getCleanWord(word));
 }
@@ -191,7 +191,7 @@ function longest(str1, str2) {
     return Array.from(set).sort().join('');
 }
 
-function longest_2(str1, str2){
+function longest_2(str1, str2) {
     return Array.from(new Set(str1 + str2)).sort().join('');
 }
 
@@ -218,7 +218,7 @@ function squareDigits_2(num) {
         current + Math.pow(+item, 2), '');
 }
 
-function squareDigits_3(num){
+function squareDigits_3(num) {
     return +(Array.from(String(num)).map(item => Math.pow(+item, 2).toString()).join(''));
 }
 
@@ -264,7 +264,7 @@ function checkArrElemOnUniqueLetters(arr) {
     return (new Set(sortedElemArr).size == 1) ? true : false;
 }
 
-function isSameLettersInWords(array){
+function isSameLettersInWords(array) {
     return new Set(array.map(item => item.toLowerCase().split('').sort().join())).size > 1 ? false : true;
 }
 
@@ -297,10 +297,10 @@ function f(a) {
     аргументов.
 */
 
-function sum(a){
+function sum(a) {
     let current = a;
-    function insideSum(...args){
-        if(args.length){
+    function insideSum(...args) {
+        if (args.length) {
             current += args[0];
             return insideSum;
         } else {
@@ -336,8 +336,23 @@ function oftenElemOfArr(arr) {
         }
     }
 }
-/*let array = [7, 'z', 'z', 'z', 3, 7, 'z', 7, 'z', 3, 5, 7];
-alert(oftenElemOfArr(array));*/
+
+function findMostPopularElement(array) {
+    const counter = {};
+    for (let item of array) {
+        if (item in counter) {
+            counter[item]++;
+        } else {
+            counter[item] = 1;
+        }
+    }
+    for (let item in counter) {
+        if (counter[item] == +Math.max(...Object.values(counter))) {
+            return item;
+        }
+    }
+}
+
 
 /*
 №12
@@ -354,7 +369,17 @@ function expand(arr) {
     return arr.flat(Infinity);
 }
 
-//console.log(expand( [1, [2], [3, [[4]]],[5,6]]))
+function expand_2(array) {
+    let result = [];
+    for (let item of array) {
+        if (Array.isArray(item)) {
+            result = result.concat(expand(item));
+        } else {
+            result.push(item);
+        }
+    }
+    return result;
+}
 
 /*
 №13
@@ -381,10 +406,25 @@ function sumSameArrElements(arr1, arr2) {
     } else {
         return worker(arr2, arr1);
     }
-
 }
 
-//alert(sumSameArrElements( [1, 2, 3, 4, 5], [4, 5, 6] ))
+function sumArrays(arr1, arr2){
+    const maxLength = +Math.max(arr1.length, arr2.length);
+    let result = [];
+
+    function calculateResult(longestArr, shortestArr){
+        for(let i = 0; i < shortestArr.length; i++){
+            result.push(longestArr[i] + shortestArr[i]);
+        }
+        result = result.concat(longestArr.slice(shortestArr.length, longestArr.length));
+    }
+    if(arr1.length === maxLength){
+        calculateResult(arr1, arr2);
+    } else {
+        calculateResult(arr2, arr1);
+    }
+    return result;
+}
 
 /*
 №14
@@ -402,7 +442,6 @@ removeDuplicates(arr); --> ["php","css","script","html","java"]
 function removeDuplicates(arr) {
     return Array.from(new Set(arr));
 }
-//alert(removeDuplicates(["php", "php", "css", "css","script", "script", "html", "html", "java"]));
 
 /*
 №15
@@ -426,7 +465,17 @@ function colonOdd(num) {
     return resultArr.join('');
 }
 
-//alert(colonOdd(3355998999999))
+function colonOdd(num){
+    let arrayFromNum = [...num.toString()];
+    console.log(arrayFromNum);
+    return arrayFromNum.reduce((current, item, index, arr) => {
+        if(+item % 2 === 1 && +arr[index + 1] % 2 === 1){
+            return current + item + ':' ;
+        } else {
+            return current + item;
+        }
+    }, '');
+}
 
 /*
 №16
@@ -459,15 +508,10 @@ str.endsWith(str1)) -->  false
 str.endsWith(str2)) -->  true
 */
 
-String.prototype.endsWith = function (str) {
-    if (this.slice(-str.length) == str) return true;
-    else return false;
+String.prototype.endsWith = function(str){
+    return this.slice(-str.length) === str;
 }
-//const str = "Каждый охотник желает знать"; 
-//const str1 = " желает знать";
-//const str2 = "знать";
-//alert(str.endsWith(str1));
-//alert(str.endsWith(str2));
+
 
 /*
 №18
@@ -483,8 +527,7 @@ comparison('string', 'Redev') -->  false
 function comparison(str1, str2) {
     return str1.toLowerCase() == str2.toLowerCase();
 }
-//alert(comparison('STRING', 'StRiNg'));
-//alert(comparison('redddev', 'Redev'));
+
 
 /*
 №19
@@ -497,11 +540,14 @@ strip(str) --> "Pasha is a good boy"
 
 function strip(str) {
     return str.replace(/\s+/g, ' ')
-        .replace(/^\s/, '')
-        .replace(/\s$/, '');
+              .replace(/^\s/, '')
+              .replace(/\s$/, '');
 }
 
-//alert(strip('    Max is a good      boy     '))
+function strip_2(str){
+    return str.trim().replace(/\s+/g, ' ');
+}
+
 /*
 №20
 
@@ -516,9 +562,6 @@ cutString(str, 5) --> "Сила тяжести приложена к центр�
 function cutString(str, n) {
     return str.split(' ').slice(0, n).join(' ');
 }
-
-//const str = "Сила тяжести приложена к центру масс тела";
-//alert(cutString(str, 5));
 
 /*
 №21
