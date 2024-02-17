@@ -576,7 +576,6 @@ alphabetize("redev") --> "deerv"
 function alphabetize(str) {
     return str.split('').sort().join('');
 }
-//alert(alphabetize("redev"));
 
 /*
 №22
@@ -590,7 +589,7 @@ uniqueLetters('redev'); --> 'redv'
 */
 
 function uniqueLetters(str) {
-    return Array.from(new Set(str)).join('');
+    return Array.from(new Set(str).keys()).join('');
 }
 
 //alert(uniqueLetters('redev'));
@@ -613,7 +612,9 @@ function removeDuplicate(str) {
     return Array.from(setOfWords).join(', ');
 }
 
-//alert(removeDuplicate("вишня, груша, слива, груша, груша, вишня, вишня, орех, орех"))
+function removeDuplicates_2(str){
+    return Array.from(new Set(str.split(', ')).keys()).join(', ');
+}
 
 /*
 №24
@@ -630,9 +631,6 @@ replaceAll('abc', 'x', str) --> 'x def def lom x x def'
 function replaceAll(find, replace, str) {
     return str.replaceAll(find, replace);
 }
-//let str = 'abc def def lom abc abc def';
-//alert(replaceAll('abc', 'x', str));
-
 
 /*
 №25
@@ -646,12 +644,8 @@ let str = 'abc def ghi jkl mno pqr stu';
 str.startsWith('abc') --> 
 */
 String.prototype.startsWith = function (substr) {
-    return this.slice(0, substr.length) == substr ? true : false;
+    return this.slice(0, substr.length) == substr;
 }
-
-/*let str = 'abc def ghi jkl mno pqr stu';
-alert(str.startsWith('abc def hi '));*/
-
 
 /*
 №26
