@@ -658,7 +658,9 @@ function capitalizeFirstLetter(str) {
     return str.split('')[0].toUpperCase() + str.slice(1);
 }
 
-//alert(capitalizeFirstLetter('kjshffksjd'))
+function capitalizeFirstLetter_1(str){
+    return str[0].toUpperCase() + str.slice(1);
+}
 
 /*
 №27
@@ -676,8 +678,9 @@ function isUpperCase(str, character) {
     return (elem == elem.toUpperCase()) ? true : false;
 }
 
-//alert(isUpperCase('tasks JavaScript', 10));
-
+function isUpperCase_1(str, position){
+    return str[position] === str[position].toUpperCase() ? true : false; 
+}
 
 /*
 №29
@@ -717,7 +720,15 @@ function createDreamTeam(arr) {
     return dreamTeamName.sort().join('');
 }
 
-//alert(createDreamTeam([1, 1111, true, true, null]));
+function createDreamTeam_1(arr){
+    const arrOfStrings = arr.filter(item => typeof item === 'string');
+    if(arrOfStrings.length){
+        return arrOfStrings.map((item) => item[0].toUpperCase()).sort().join('');
+    } else {
+        return false;
+    }
+}
+
 /*
 №30
 
@@ -727,8 +738,6 @@ function createDreamTeam(arr) {
 function factorial(n) {
     return n <= 1 ? 1 : n * factorial(n - 1);
 }
-
-//alert(factorial(8))
 
 
 /*
