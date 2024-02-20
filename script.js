@@ -408,17 +408,17 @@ function sumSameArrElements(arr1, arr2) {
     }
 }
 
-function sumArrays(arr1, arr2){
+function sumArrays(arr1, arr2) {
     const maxLength = +Math.max(arr1.length, arr2.length);
     let result = [];
 
-    function calculateResult(longestArr, shortestArr){
-        for(let i = 0; i < shortestArr.length; i++){
+    function calculateResult(longestArr, shortestArr) {
+        for (let i = 0; i < shortestArr.length; i++) {
             result.push(longestArr[i] + shortestArr[i]);
         }
         result = result.concat(longestArr.slice(shortestArr.length, longestArr.length));
     }
-    if(arr1.length === maxLength){
+    if (arr1.length === maxLength) {
         calculateResult(arr1, arr2);
     } else {
         calculateResult(arr2, arr1);
@@ -465,12 +465,12 @@ function colonOdd(num) {
     return resultArr.join('');
 }
 
-function colonOdd(num){
+function colonOdd(num) {
     let arrayFromNum = [...num.toString()];
     console.log(arrayFromNum);
     return arrayFromNum.reduce((current, item, index, arr) => {
-        if(+item % 2 === 1 && +arr[index + 1] % 2 === 1){
-            return current + item + ':' ;
+        if (+item % 2 === 1 && +arr[index + 1] % 2 === 1) {
+            return current + item + ':';
         } else {
             return current + item;
         }
@@ -508,7 +508,7 @@ str.endsWith(str1)) -->  false
 str.endsWith(str2)) -->  true
 */
 
-String.prototype.endsWith = function(str){
+String.prototype.endsWith = function (str) {
     return this.slice(-str.length) === str;
 }
 
@@ -540,11 +540,11 @@ strip(str) --> "Pasha is a good boy"
 
 function strip(str) {
     return str.replace(/\s+/g, ' ')
-              .replace(/^\s/, '')
-              .replace(/\s$/, '');
+        .replace(/^\s/, '')
+        .replace(/\s$/, '');
 }
 
-function strip_2(str){
+function strip_2(str) {
     return str.trim().replace(/\s+/g, ' ');
 }
 
@@ -612,7 +612,7 @@ function removeDuplicate(str) {
     return Array.from(setOfWords).join(', ');
 }
 
-function removeDuplicates_2(str){
+function removeDuplicates_2(str) {
     return Array.from(new Set(str.split(', ')).keys()).join(', ');
 }
 
@@ -658,7 +658,7 @@ function capitalizeFirstLetter(str) {
     return str.split('')[0].toUpperCase() + str.slice(1);
 }
 
-function capitalizeFirstLetter_1(str){
+function capitalizeFirstLetter_1(str) {
     return str[0].toUpperCase() + str.slice(1);
 }
 
@@ -678,8 +678,8 @@ function isUpperCase(str, character) {
     return (elem == elem.toUpperCase()) ? true : false;
 }
 
-function isUpperCase_1(str, position){
-    return str[position] === str[position].toUpperCase() ? true : false; 
+function isUpperCase_1(str, position) {
+    return str[position] === str[position].toUpperCase() ? true : false;
 }
 
 /*
@@ -720,9 +720,9 @@ function createDreamTeam(arr) {
     return dreamTeamName.sort().join('');
 }
 
-function createDreamTeam_1(arr){
+function createDreamTeam_1(arr) {
     const arrOfStrings = arr.filter(item => typeof item === 'string');
-    if(arrOfStrings.length){
+    if (arrOfStrings.length) {
         return arrOfStrings.map((item) => item[0].toUpperCase()).sort().join('');
     } else {
         return false;
@@ -758,7 +758,11 @@ function countCats(arr) {
     return arr.flat(1).filter(item => item === '^^').length;
 }
 
-// console.log(countCats([[0,1,"^^"],[9,"^^",2],["^^",8,7]]));
+function countCats(...args) {
+    return args.reduce((current, item) => {
+        return item.includes('^^') ? ++current : current;
+    }, 0);
+}
 
 /*
 №32
@@ -773,7 +777,6 @@ function checkPolindrom(str) {
     return (clearStr === clearStr.split('').reverse().join('')) ? true : false;
 }
 
-//alert(checkPolindrom('Сел в озере березов лес'))
 /*
 №33
 
@@ -800,10 +803,17 @@ function solution(str) {
 function solution_1(str) {
     return str.replace(/([A-Z])/g, item => `_${item.toLowerCase()}`);
 }
-/*
-alert(solution("redevCoursesRTffRRR"))
-alert(solution("redevCoursesRTffRRR") == solution_1("redevCoursesRTffRRR"));
-*/
+
+function toSnakeCase(str) {
+    return Array.from(str).reduce((current, item) => {
+        if (item === item.toUpperCase()) {
+            return current + '_' + item.toLowerCase();
+        } else {
+            return current + item;
+        }
+    }, '');
+}
+
 
 /*
 №34
@@ -823,7 +833,21 @@ function changeFirstAndLastLettersInWord(str) {
     return resultArrOfWords.join(' ');
 }
 
-//alert(changeFirstAndLastLettersInWord("This is an example!"))
+function reverseWords(str) {
+    return str
+        .split(' ')
+        .map(item => [...item].reverse().join(''))
+        .join(' ');
+}
+
+function reverseWords_2(str) {
+    return str
+        .split(' ')
+        .reduce((current, item) => {
+            return current + ' ' + [...item].reverse().join('')
+        }, '');
+}
+
 
 /*
 №35
@@ -852,7 +876,18 @@ function sortStrByNumber(str) {
     }
     return resultArrOfWords.join(' ');
 }
-//alert(sortStrByNumber("2is Thi1s T4est 3a"));
+
+function orderWords(str) {
+    if (!str.length) {
+        return '';
+    }
+    const cache = {};
+    str.split(' ').forEach(item => {
+        let number = item.replaceAll(/[A-Za-z]+/g, '');
+        cache[number] = item;
+    });
+    return Array.from(Object.values(cache)).join(' ');
+}
 
 /*
 №36
@@ -869,7 +904,11 @@ function sumOfTwoMinNumbers(arr) {
     return sortedArr[0] + sortedArr[1];
 }
 
-//alert(sumOfTwoMinNumbers([12,423,54,1235,3,15,2,52]))
+function sumOfTwoMinValues(arr) {
+    return arr.sort((a, b) => a - b)
+        .slice(0, 2)
+        .reduce((cur, item) => cur + item, 0);
+}
 
 /*
 №37
@@ -894,7 +933,13 @@ function strQueryFromNumbers(num) {
 
 }
 
-//alert(strQueryFromNumbers(5).length)
+function createStrFromNum(n) {
+    let result = '';
+    for (let i = n; i > 0; --i) {
+        result += `${i} `
+    }
+    return result.trim();
+}
 
 /*
 №38
@@ -906,16 +951,19 @@ arrayDiff([1,2],[1]) --> [2]
 arrayDiff([1,2,2,2,3,4],[2,3]) --> [1,4]
 */
 
-function arrayDiff(arr1, arr2) {
-    let result = [];
-    for (let item of arr1) {
-        if (!arr2.includes(item)) {
-            result.push(item)
+function arrayDifference(arr1, arr2) {
+    return arr1.filter(item => !arr2.includes(item));
+}
+
+function arrayDifference_2(arr1, arr2) {
+    for (let i = 0; i < arr1.length; ++i) {
+        if (arr2.includes(arr1[i])) {
+            arr1.splice(i, 1);
+            i--;
         }
     }
-    return result;
+    return arr1;
 }
-//alert(arrayDiff([1,2,2,2,3,4],[2,3]))
 /*
 №39
 
@@ -933,7 +981,6 @@ function arrayDiff(arr1, arr2) {
 function invert(arr) {
     return arr.map(item => -item)
 }
-//alert(invert([1,-2,4,-5]))
 
 /*
 №40
@@ -959,7 +1006,13 @@ function findNeedle(arr) {
     }
 }
 
-//alert(findNeedle(["bla","needle","wekmvever","bntyn"]))
+function findNeedle(array) {
+    for (let i = 0; i < array.length; ++i) {
+        if (array[i] === 'needle') {
+            return `Нашел иголку на позиции ${i}`;
+        }
+    }
+}
 
 /*
 №41
