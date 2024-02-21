@@ -1026,7 +1026,6 @@ simple("") --> 3
 
 function simple(str) {
     let clearStr = str.replace(/[^a-zа-яё\s]/gi, '').replace('  ', ' ');
-    alert(clearStr);
     let setOfLength = new Set();
     for (let item of clearStr.split(' ')) {
         setOfLength.add(item.length);
@@ -1034,7 +1033,22 @@ function simple(str) {
     return Math.min.apply(null, Array.from(setOfLength));
     //return Math.min(...Array.from(setOfLength)) 
 }
-//alert(simple("Функция simple качестве параметра принимающая строку слов, возвращает длину самого короткого слова"))
+
+function getTheShortestWord(str){
+    let cleanStr = str.replaceAll(/[^a-zа-яё\s]/gi, '').replace('  ', ' ');
+    let length = cleanStr.split(' ')[0].length;
+    for(let word of cleanStr.split(' ')){
+        if(length > word.length){
+            length = word.length;
+        }
+    }
+    return length;
+}
+
+function getShortestLength(str){
+    let cleanStr = str.replaceAll(/[^a-zа-яё\s]/gi, '').replace('  ', ' ');
+    return Math.min(...cleanStr.split(' ').map(item => item.length));
+}
 
 /*
 №42
@@ -1051,7 +1065,10 @@ function MinAndMaxNumOfArr(arr) {
     let sortedArr = arr.sort((a, b) => a - b);
     return [sortedArr[0], sortedArr.at(-1)];
 }
-//alert(MinAndMaxNumOfArr([-5, -7, -2, 5]))
+
+function getMaxAndMinValues(arr){
+    return [Math.min(...arr), Math.max(...arr)];
+}
 
 /*
 №43
@@ -1076,15 +1093,17 @@ function toJadenCase(str) {
     for (let i = 0; i < str.length; i++) {
         if (str[i] == ' ') {
             correctStr = str.slice(0, i + 1) +
-                str[i + 1].toUpperCase() +
-                str.slice(i + 2);
+                         str[i + 1].toUpperCase() +
+                         str.slice(i + 2);
             str = correctStr;
         }
     }
     return correctStr[0].toUpperCase() + correctStr.slice(1);
 }
-//alert(toJadenCase('но они не написаны с большой - буквы так, как он их первоначально напечатал'))
 
+function toJadenCase(str){
+    return str[0].toUpperCase() + str.slice(1).replaceAll(/\s[a-zа-яё]/g, item => item.toUpperCase());
+}
 /*
 №44
 
@@ -1105,7 +1124,10 @@ function correctPin(str) {
         return (str.length == 4 || str.length == 6) ? true : false;
     } else return false;
 }
-//alert(correctPin('5588867'))
+
+function isPinCorrect(pin){
+    return isFinite(pin) ? [4,6].includes(pin.length) : false;
+}
 
 /*
 №45
@@ -1130,7 +1152,12 @@ function accum(str) {
         .slice(1)
 }
 
-//console.log(accum('RqaEzty'));
+function accum(str){
+    return [...str].reduce((current, item, index) => {
+        return current + item.toUpperCase() + item.repeat(index) + '-';
+    }, '');
+}
+
 
 /*
 №46
