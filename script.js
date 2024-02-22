@@ -1173,7 +1173,9 @@ function findMaxAndMinFromStr(str) {
     let arrOfNums = str.split(' ').map(item => Number(item));
     return '' + Math.max(...arrOfNums) + ' ' + Math.min(...arrOfNums);
 }
-//alert(findMaxAndMinFromStr("4 5 29 54 4 0 -123 666 -64 1 -3 6 -6"))
+function findMaxandMinValues(str){
+    return `${Math.max(...str.split(' '))} ${Math.min(...str.split(' '))}`;
+}
 
 /*
 №47
@@ -1192,7 +1194,6 @@ function blockTrolling(str) {
     return str.replace(/[аеёиоуэюяы]/gi, '');
 }
 
-//alert(blockTrolling("Этоооооооот сайт для лузеров ЛОЛ!"));
 
 /*
 №48
@@ -1218,7 +1219,6 @@ findNextSquare(64); --> 81
 function findNextSquare(num) {
     return (Number.isInteger(Math.sqrt(num))) ? Math.pow((Math.sqrt(num) + 1), 2) : -1;
 }
-//alert(findNextSquare(16))
 
 /*
 №49
@@ -1234,12 +1234,9 @@ function findNextSquare(num) {
 "" -->  ""
 */
 
-function splitCamelCase(str) {
-    return str.replace(/([A-Z])/g, item => ` ${item}`)
+function destroyCamelCase(str){
+    return str[0] + str.slice(1).replaceAll(/([A-Z])/g, item => ` ${item}`);
 }
-
-//alert(splitCamelCase(''))
-
 
 /*
 №50
@@ -1260,7 +1257,16 @@ function findAllDivisors(num) {
     return result.length === 0 ? `${num} is prime` : result;
 }
 
-//console.log(findAllDivisors(125));
+function divisors(num){
+    let result = [];
+    for(let i = 1; i <= num; i++){
+        if(num % i === 0){
+            result.push(i);
+        }
+    }
+    return result.length === 2 ? `${num} is prime` : result;
+}
+
 
 /*
 №51
