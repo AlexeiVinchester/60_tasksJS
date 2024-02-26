@@ -1288,8 +1288,6 @@ function isNarcissistic(num) {
             sum + Math.pow(item, arrFromNum.length), 0) ? true : false;
 }
 
-//alert(isNarcissistic(370))
-
 /*
 №52
 
@@ -1314,7 +1312,15 @@ function checkDeliver3And5(num) {
     return arrOfMatchNums.reduce((sum, item) => sum + item, 0);
 }
 
-//alert(checkDeliver3And5(23))
+function find3and5Devisors(num){
+    let result = [];
+    for(let i = 1; i < num; i++){
+        if(i % 3 === 0 || i % 5 === 0){
+            result.push(i);
+        }
+    }
+    return result.reduce((sum, item) => sum + item, 0);
+}
 
 /*
 №53
@@ -1345,7 +1351,13 @@ function findOutlier(arr) {
         arr.find(item => item % 2 == 1) :
         arr.find(item => item % 2 == 0);
 }
-//alert(findOutlier([1,1,0,1,1]));
+
+function findOutlier(arr){
+    const oddArrLength = arr.filter(item => item % 2 !== 0).length;
+    return oddArrLength - 1 
+            ? arr.find(item => item % 2 === 0) 
+            : arr.find(item => item % 2 !== 0);
+}
 
 /*
 №54
@@ -1364,7 +1376,7 @@ function pigIt(str) {
         .map(item => item.slice(1) + item[0] + 'ay')
         .join(' ');
 }
-//console.log(pigIt('This is my string'));
+
 
 /*
 №55
@@ -1384,7 +1396,10 @@ validParentheses('()((()') --> false
 function validParentheses(str) {
     return str.replaceAll('()', '').length === 0 ? true : false;
 }
-//alert(validParentheses('()((()'));
+
+function isValidParentheses_1(str){
+    return !str.replaceAll('()', '').length;
+}
 
 /*
 №56
