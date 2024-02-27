@@ -1434,7 +1434,12 @@ function putHashtagInTheBeginning(str) {
     return result.length > 140 ? false : result;
 }
 
-//console.log(putHashtagInTheBeginning("       Hello there thanks for trying my Kata"));
+function hashName(str){
+    const result = '#' + str.trim()
+                            .replaceAll(/\s+[a-zа-яё]/ig, item => item.toUpperCase().trim());
+    return result.length > 140 || !str.length ? false : result;
+}
+
 /*
 №57
 
@@ -1457,7 +1462,22 @@ function countOdd(arr) {
         if (map.get(key) % 2 == 1) return key;
     }
 }
-//alert(countOdd([20,1,1,2,2,3,3,5,5,4,20,4,5]))
+
+function findOddAppearanced(arr){
+    let counter = {};
+    for(let item of arr){
+        if(item in counter){
+            counter[item]++;
+        } else {
+            counter[item] = 1;
+        }
+    }
+    for(let [key, value] of Object.entries(counter)){
+        if(value % 2 !== 0){
+            return key;
+        }
+    }
+}
 
 /*
 №58
@@ -1508,4 +1528,13 @@ function digitalRoot(num) {
     return num;
 }
 
-// console.log(digitalRoot(493193))
+function digital_root(num){
+    if(String(num).length === 1) {
+        return num;
+    } else {
+        let currentNum = [...String(num)].reduce((sum, item) => sum + +item, 0);
+        return digital_root(currentNum);
+    }
+}
+
+
