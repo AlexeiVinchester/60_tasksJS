@@ -393,38 +393,13 @@ const array2 = [4, 5, 6];
 func(array1,array2) // [5,7,9,4,5]
 */
 
-function sumSameArrElements(arr1, arr2) {
-    function worker(maxArr, minArr) {
-        let result = [];
-        for (let i = 0; i < minArr.length; ++i) {
-            result[i] = maxArr[i] + minArr[i];
-        }
-        return result.concat(maxArr.splice(minArr.length, (maxArr.length - minArr.length)));
-    }
-    if (arr1.length > arr2.length) {
-        return worker(arr1, arr2);
-    } else {
-        return worker(arr2, arr1);
-    }
-}
-
-function sumArrays(arr1, arr2) {
-    const maxLength = +Math.max(arr1.length, arr2.length);
-    let result = [];
-
-    function calculateResult(longestArr, shortestArr) {
-        for (let i = 0; i < shortestArr.length; i++) {
-            result.push(longestArr[i] + shortestArr[i]);
-        }
-        result = result.concat(longestArr.slice(shortestArr.length, longestArr.length));
-    }
-    if (arr1.length === maxLength) {
-        calculateResult(arr1, arr2);
-    } else {
-        calculateResult(arr2, arr1);
+const arraySummator = (arr1, arr2) => {
+    const result = []
+    for (let i = 0; i < Math.max(arr1.length, arr2.length); i++) {
+        result.push((arr1[i] || 0) + (arr2[i] || 0))
     }
     return result;
-}
+};
 
 /*
 №14
